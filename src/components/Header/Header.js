@@ -50,6 +50,15 @@ class Header extends Component {
             <li className="spaced">
               <Link to="/">POETLANDIA</Link>
             </li>
+            <li>
+              <Link to="/search">Search</Link>
+            </li>
+            <li>
+              <Link to="/drafts">Drafts</Link>
+            </li>
+            <li>
+              <Link to="/library">Library</Link>
+            </li>
           </h1>
           {TokenService.hasAuthToken()
             ? this.renderLogoutLink()

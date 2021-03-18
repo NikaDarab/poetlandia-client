@@ -1,5 +1,9 @@
 let DashboardRoute = () => {
-  return <h1>success</h1>;
+  return (
+    <>
+      <h2>Welcome</h2>
+    </>
+  );
 };
 
 export default DashboardRoute;

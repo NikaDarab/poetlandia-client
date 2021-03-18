@@ -4,11 +4,12 @@
   margin: 10% 0;
   color: rgb(85, 83, 83);
 }
-input {
+input,
+textarea {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 2px;
-  resize: vertical;
+  /* resize: vertical; */
   padding: 12px 12px 20px 0;
   cursor: pointer;
   float: right;

@@ -1,0 +1,80 @@
+import React, { Component } from "react";
+import { PoemContext } from "../../contexts/PoemContext";
+import PoemApiService from "../../services/poem-api-service";
+
+class EditPoem extends Component {
+  static contextType = PoemContext;
+
+  handleEdit = (e) => {
+    e.preventDefault();
+    console.log("edit");
+    let newPoem = {
+      title: e.target.title.value,
+      author: e.target.author.value,
+      lines: e.target.lines.value.split(","),
+    };
+    let poemId = this.props.poemId;
+    PoemApiService.editPoem(newPoem, this.props.poemId).then(() =>
+      this.context.editPoem(poemId, newPoem)
+    );
+    this.props.handleEdit();
+  };
+  render() {
+    return (
+      <form onSubmit={this.handleEdit}>
+        <ul>
+          <li>
+            <label htmlFor="title">
+              <b>Title</b>
+              <br />
+              <span className="required">*</span>
+            </label>
+            <input
+              className="field-long"
+              type="text"
+              placeholder={this.props.title}
+              defaultValue={this.props.title}
+              name="title"
+              required
+            />
+          </li>
+          <br />
+          <li>
+            <label htmlFor="author">
+              <b>Author</b>
+              <br />
+              <span className="required">*</span>
+            </label>
+            <input
+              className="field-long"
+              type="text"
+              name="author"
+              placeholder={this.props.author}
+              defaultValue={this.props.author}
+              required
+            />
+          </li>
+          <br />
+          <li>
+            <label htmlFor="lines">
+              <b>poem</b>
+              <br />
+              <span className="required">*</span>
+            </label>
+            <textarea
+              className="field-long"
+              name="lines"
+              placeholder={this.props.lines}
+              defaultValue={this.props.lines}
+              required
+            />
+          </li>
+          <br />
+        </ul>
+        <button>Submit</button>
+      </form>
+    );
+  }
+}
+
+export default EditPoem;

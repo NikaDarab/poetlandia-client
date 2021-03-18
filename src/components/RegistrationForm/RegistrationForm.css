@@ -1,4 +1,4 @@
-input {
+/* input {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 2px;
@@ -30,7 +30,7 @@ label {
   border: 2px solid #0099cc;
   border-radius: 5px;
   text-transform: uppercase; /* Make letters uppercase */
-}
+/* }
 
 @media only screen and (max-width: 600px) {
   .form {
@@ -42,6 +42,6 @@ label {
     margin: 50px 0 0 0;
     padding: 0 35px;
     font-weight: 500;
-    font-size: 20px;
-  }
-}
+    font-size: 20px; */
+/* } */
+/* }  */

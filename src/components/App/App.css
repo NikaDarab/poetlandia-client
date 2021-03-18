@@ -1,18 +1,2 @@
-.image {
-  display: flex;
-  justify-content: center;
-}
-
-.italingo-img {
-  /* position: absolute; */
-  width: 65%;
-  height: auto;
-  bottom: 0px;
-  /* background-color: red; */
-  margin: 0 !important;
-}
-@media only screen and (max-width: 600px) {
-  .italingo-img {
-    /* width: 20%; */
-  }
+.App {
 }

@@ -8,10 +8,13 @@ import LoginRoute from "../../routes/LoginRoute/LoginRoute";
 import DashboardRoute from "../../routes/DashboardRoute/DashboardRoute";
 // import LearningRoute from "../../routes/LearningRoute/LearningRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
+import Search from "../Search/Search";
+import { ContextsProvider } from "../../contexts/PoemContext";
+import Library from "../Library/Library";
+import Draft from "../Draft/Draft";
+import EditPoem from "../PoemList/EditPoem";
 
-// import { ContextsProvider } from "../../contexts/LanguageContext";
-
-import "./App.css";
+// import "./App.css";
 
 export default class App extends Component {
   state = { hasError: false };
@@ -26,26 +29,30 @@ export default class App extends Component {
     const { hasError } = this.state;
     return (
       <BrowserRouter>
-        {/* <ContextsProvider> */}
-        <div className="App">
-          <main>
-            <Header />
-            {hasError && <p>There was an error! Oh no!</p>}
+        <ContextsProvider>
+          <div className="App">
+            <main>
+              <Header />
 
-            <Switch>
-              <PrivateRoute exact path={"/"} component={DashboardRoute} />
+              {hasError && <p>There was an error! Oh no!</p>}
 
-              {/* <PrivateRoute path={"/learn"} component={LearningRoute} /> */}
-              <PublicOnlyRoute
-                path={"/register"}
-                component={RegistrationRoute}
-              />
-              <PublicOnlyRoute path={"/login"} component={LoginRoute} />
-              <Route component={NotFoundRoute} />
-            </Switch>
-          </main>
-        </div>
-        {/* </ContextsProvider> */}
+              <Switch>
+                <PrivateRoute exact path={"/"} component={DashboardRoute} />
+                <PrivateRoute path={"/drafts"} component={Draft} />
+                <PrivateRoute path={"/library"} component={Library} />
+                <PrivateRoute path={"/edit"} component={EditPoem} />
+                <PublicOnlyRoute
+                  path={"/register"}
+                  component={RegistrationRoute}
+                />
+
+                <Route path="/search" component={Search} />
+                <PublicOnlyRoute path={"/login"} component={LoginRoute} />
+                <Route component={NotFoundRoute} />
+              </Switch>
+            </main>
+          </div>
+        </ContextsProvider>
       </BrowserRouter>
     );
   }
