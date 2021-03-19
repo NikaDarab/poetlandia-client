@@ -10,7 +10,8 @@ import DashboardRoute from "../../routes/DashboardRoute/DashboardRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
 import Search from "../Search/Search";
 import { ContextsProvider } from "../../contexts/PoemContext";
-import Library from "../Library/Library";
+import { LibraryProvider } from "../../contexts/LibraryContext";
+import LibraryList from "../Library/LibraryList";
 import Draft from "../Draft/Draft";
 import EditPoem from "../PoemList/EditPoem";
 
@@ -30,28 +31,30 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <ContextsProvider>
-          <div className="App">
-            <main>
-              <Header />
+          <LibraryProvider>
+            <div className="App">
+              <main>
+                <Header />
 
-              {hasError && <p>There was an error! Oh no!</p>}
+                {hasError && <p>There was an error! Oh no!</p>}
 
-              <Switch>
-                <PrivateRoute exact path={"/"} component={DashboardRoute} />
-                <PrivateRoute path={"/drafts"} component={Draft} />
-                <PrivateRoute path={"/library"} component={Library} />
-                <PrivateRoute path={"/edit"} component={EditPoem} />
-                <PublicOnlyRoute
-                  path={"/register"}
-                  component={RegistrationRoute}
-                />
+                <Switch>
+                  <PrivateRoute exact path={"/"} component={DashboardRoute} />
+                  <PrivateRoute path={"/drafts"} component={Draft} />
+                  <Route path={"/library"} component={LibraryList} />
+                  <PrivateRoute path={"/edit"} component={EditPoem} />
+                  <PublicOnlyRoute
+                    path={"/register"}
+                    component={RegistrationRoute}
+                  />
 
-                <Route path="/search" component={Search} />
-                <PublicOnlyRoute path={"/login"} component={LoginRoute} />
-                <Route component={NotFoundRoute} />
-              </Switch>
-            </main>
-          </div>
+                  <Route path="/search" component={Search} />
+                  <PublicOnlyRoute path={"/login"} component={LoginRoute} />
+                  <Route component={NotFoundRoute} />
+                </Switch>
+              </main>
+            </div>
+          </LibraryProvider>
         </ContextsProvider>
       </BrowserRouter>
     );

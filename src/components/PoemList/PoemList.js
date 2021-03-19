@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { PoemContext } from "../../contexts/PoemContext";
+// import { LibraryContext } from "../../contexts/LibraryContext";
 import PoemApiService from "../../services/poem-api-service";
+import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
 import "./PoemList.css";
 class PoemList extends Component {
@@ -8,6 +10,7 @@ class PoemList extends Component {
     editToggle: false,
   };
   static contextType = PoemContext;
+  // static contextType = LibraryContext;
 
   handleDelete = (poemId) => {
     // console.log(poemId);
@@ -20,6 +23,21 @@ class PoemList extends Component {
       editToggle: !this.state.editToggle,
     });
     console.log(this.state.editToggle);
+  };
+
+  handleFave = (title, author, lines, poemId) => {
+    console.log("faved");
+    let library = {
+      title: title,
+      author: author,
+      lines: lines.split(","),
+    };
+    console.log(library);
+    LibraryApiService.postLibrary(library).then((library) =>
+      this.context.addLibrary(library)
+    );
+    this.handleDelete(poemId);
+    window.location = "/library";
   };
   componentDidMount = () => {
     PoemApiService.getPoem().then((poem) => {
@@ -34,7 +52,7 @@ class PoemList extends Component {
         <div>
           <ul>
             {this.context.poems.map((poem) => (
-              <div className="poem-item" key={poem.lines}>
+              <div className="poem-item" key={poem.id}>
                 <h2>Title :{poem.title}</h2>
                 <h3>Author :{poem.author}</h3>
                 <p>Poem: {poem.lines}</p>
@@ -51,6 +69,18 @@ class PoemList extends Component {
                     handleEdit={this.handleEdit}
                   />
                 ) : null}
+                <button
+                  onClick={() =>
+                    this.handleFave(
+                      poem.title,
+                      poem.author,
+                      poem.lines,
+                      poem.id
+                    )
+                  }
+                >
+                  Publish
+                </button>
               </div>
             ))}
           </ul>

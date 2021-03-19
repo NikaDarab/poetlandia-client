@@ -1,43 +1,16 @@
 import React, { Component } from "react";
 // import config from "../../config";
 
-export const PoemContext = React.createContext({
-  poems: [],
+export const LibraryContext = React.createContext({
   libraries: [],
 });
 
-export class ContextsProvider extends Component {
+export class LibraryProvider extends Component {
   state = {
-    poems: [],
     libraries: [],
     error: null,
   };
 
-  getPoems = (poems) => {
-    this.setState({
-      poems,
-    });
-  };
-
-  addPoems = (poems) => {
-    this.setState({
-      poems: [poems, ...this.state.poems],
-    });
-  };
-
-  deletePoem = (poemId) => {
-    console.log("delete");
-    this.setState({
-      poems: this.state.poems.filter((poem) => poem.id !== poemId),
-    });
-  };
-
-  editPoem = (poemId, newPoem) => {
-    let poems = [...this.state.poems];
-    let foundIndex = poems.findIndex((poem) => poem.id === poemId);
-    poems[foundIndex] = newPoem;
-    this.setState({ poems });
-  };
   getLibraries = (libraries) => {
     this.setState({
       libraries,
@@ -46,7 +19,7 @@ export class ContextsProvider extends Component {
 
   addLibrary = (library) => {
     this.setState({
-      libraries: [library, ...this.state.libraries],
+      libraries: [...this.state.libraries, library],
     });
   };
 
@@ -68,21 +41,16 @@ export class ContextsProvider extends Component {
 
   render() {
     let value = {
-      poems: this.state.poems,
       libraries: this.state.libraries,
-      getPoems: this.getPoems,
-      addPoems: this.addPoems,
-      deletePoem: this.deletePoem,
-      editPoem: this.editPoem,
       getLibraries: this.getLibraries,
       addLibrary: this.addLibrary,
       deleteLibrary: this.deleteLibrary,
       editLibrary: this.editLibrary,
     };
     return (
-      <PoemContext.Provider value={value}>
+      <LibraryContext.Provider value={value}>
         {this.props.children}
-      </PoemContext.Provider>
+      </LibraryContext.Provider>
     );
   }
 }
