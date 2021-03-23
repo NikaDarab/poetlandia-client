@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import UserContext from "../../contexts/UserContext";
-
-import "./Header.css";
+import Search from "../Search/Search";
 
 class Header extends Component {
   static contextType = UserContext;
@@ -14,30 +13,29 @@ class Header extends Component {
 
   renderLogoutLink() {
     return (
-      <div>
-        <span className="username">current user:{this.context.user.name}</span>
-        <nav>
-          <li>
-            <Link onClick={this.handleLogoutClick} to="/login">
-              Logout
-            </Link>
-          </li>
-        </nav>
-      </div>
+      <>
+        {/* <span className="username">current user:{this.context.user.name}</span> */}
+
+        <li className="auth-link">
+          <Link onClick={this.handleLogoutClick} to="/login">
+            Logout
+          </Link>
+        </li>
+      </>
     );
   }
 
   renderLoginLink() {
     return (
       <>
-        <nav>
+        <>
           <li className="auth-link">
             <Link to="/login">Login</Link>
           </li>{" "}
           <li className="auth-link">
             <Link to="/register">Sign up</Link>
           </li>
-        </nav>
+        </>
       </>
     );
   }
@@ -56,13 +54,15 @@ class Header extends Component {
             <li>
               <Link to="/drafts">Drafts</Link>
             </li>
+            <li>Favorites</li>
             <li>
               <Link to="/library">Library</Link>
             </li>
+
+            {TokenService.hasAuthToken()
+              ? this.renderLogoutLink()
+              : this.renderLoginLink()}
           </h1>
-          {TokenService.hasAuthToken()
-            ? this.renderLogoutLink()
-            : this.renderLoginLink()}
         </header>
       </>
     );

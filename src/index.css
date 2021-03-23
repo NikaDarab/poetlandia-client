@@ -13,10 +13,11 @@ body {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-image: url("./assets/poetlandia.png");
+  /* background-image: url("./assets/poetlandia.png"); */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
+  background-color: rgb(217, 215, 235);
 }
 a:link {
   text-decoration: none;
@@ -45,4 +46,45 @@ a:link {
   input {
     font-size: 16px;
   }
+}
+h1 {
+  margin: 0;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  padding: 20px 43px;
+}
+nav {
+  float: right;
+  margin: -55px 0;
+}
+
+.username {
+  display: flex;
+  text-align: left;
+  margin: 0 15px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+:is(.header) a:visited {
+  color: inherit;
+}
+:is(.header) a:hover {
+  color: rgb(10, 20, 72);
+}
+.auth-link {
+  float: right;
+}
+@media only screen and (max-width: 700px) {
+  .auth-link,
+  li {
+    font-size: 11px;
+    margin: 12px 0;
+    padding: 10px 14px;
+  }
+}
+.poem-item {
+  border: 0.2px solid black;
 }

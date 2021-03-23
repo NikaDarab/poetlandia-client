@@ -21,7 +21,7 @@ const PoemApiService = {
       body: JSON.stringify(poem),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${config.TOKEN_KEY}`,
+        Authorization: `Bearer ${TokenService.getAuthToken()}`,
       },
     };
     return fetch(`${config.API_ENDPOINT}/poem`, postOptions).then((res) => {

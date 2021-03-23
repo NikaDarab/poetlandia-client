@@ -4,7 +4,7 @@ import { PoemContext } from "../../contexts/PoemContext";
 import PoemApiService from "../../services/poem-api-service";
 import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
-import "./PoemList.css";
+
 class PoemList extends Component {
   state = {
     editToggle: false,
@@ -56,6 +56,8 @@ class PoemList extends Component {
                 <h2>Title :{poem.title}</h2>
                 <h3>Author :{poem.author}</h3>
                 <p>Poem: {poem.lines}</p>
+                <p>Date: {poem.date_created}</p>
+                {console.log(poem)}
                 <button onClick={() => this.handleDelete(poem.id)}>
                   Delete
                 </button>

@@ -1,7 +1,10 @@
 import { Component } from "react";
 import { PoemContext } from "../../contexts/PoemContext";
-import "./Search.css";
+import Display from "./Display";
 class Search extends Component {
+  state = {
+    resultToggle: false,
+  };
   static contextType = PoemContext;
 
   handleSubmit = (e) => {
@@ -12,9 +15,14 @@ class Search extends Component {
     if (poet.length && title.length) {
       let baseUrl = "https://poetrydb.org/author,title/";
       fetch(`${baseUrl}${poet};${title}`)
-        .then((response) => {
-          return response.json();
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((e) => Promise.reject(e));
+          }
+
+          return res.json().then((poem) => poem);
         })
+
         .then((poems) => {
           this.context.getPoems(poems);
         });
@@ -39,6 +47,9 @@ class Search extends Component {
           this.context.getPoems(poems);
         });
     }
+    this.setState({
+      resultToggle: !this.state.resultToggle,
+    });
   };
 
   handleAddLib = (poem) => {
@@ -67,19 +78,7 @@ class Search extends Component {
           </div>
           <input type="submit" value="Submit" />
         </form>
-        {}
-        {poems.map((poem) => (
-          <ul key={poem.lines} name="poem">
-            <form onSubmit={this.handleAddLib(poem)}>
-              <h1>{poem.title}</h1>
-              <h2>{poem.author}</h2>
-              <p>{poem.lines}</p>
-              <button>fave it</button>
-
-              <input name="poem" type="submit" value="Submit" />
-            </form>
-          </ul>
-        ))}
+        {this.state.resultToggle ? <Display poems={poems} /> : null}
       </>
     );
   }

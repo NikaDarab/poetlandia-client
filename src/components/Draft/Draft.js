@@ -2,8 +2,10 @@ import { Component } from "react";
 import Button from "../Button/Button";
 import PoemForm from "../PoemForm/PoemForm";
 import PoemList from "../PoemList/PoemList";
+import UserContext from "../../contexts/UserContext";
 
 class Draft extends Component {
+  static contextType = UserContext;
   state = {
     toggleForm: false,
   };
@@ -21,7 +23,10 @@ class Draft extends Component {
           Add a poem
         </Button>
         {this.state.toggleForm ? (
-          <PoemForm handleClick={this.handleClick} />
+          <PoemForm
+            user={this.context.user.name}
+            handleClick={this.handleClick}
+          />
         ) : null}
         <PoemList />
       </>

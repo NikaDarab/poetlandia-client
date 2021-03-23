@@ -14,6 +14,7 @@ import { LibraryProvider } from "../../contexts/LibraryContext";
 import LibraryList from "../Library/LibraryList";
 import Draft from "../Draft/Draft";
 import EditPoem from "../PoemList/EditPoem";
+import poetlandia from "../../assets/poetlandia.png";
 
 // import "./App.css";
 
@@ -53,6 +54,11 @@ export default class App extends Component {
                   <Route component={NotFoundRoute} />
                 </Switch>
               </main>
+              <footer>
+                {/* <div className="background-img">
+                  <img src={poetlandia} alt="" />
+                </div> */}
+              </footer>
             </div>
           </LibraryProvider>
         </ContextsProvider>

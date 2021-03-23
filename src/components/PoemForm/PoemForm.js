@@ -7,8 +7,9 @@ class PoemForm extends Component {
     e.preventDefault();
     let poem = {
       title: e.target.title.value,
-      author: e.target.author.value,
+      author: this.props.user,
       lines: e.target.lines.value.split(","),
+      date_created: new Date().toLocaleString(),
     };
     PoemApiService.postPoem(poem).then((poem) => this.context.addPoems(poem));
     console.log(this.context.poems);
@@ -34,7 +35,7 @@ class PoemForm extends Component {
             />
           </li>
           <br />
-          <li>
+          {/* <li>
             <label htmlFor="author">
               <b>Author</b>
               <br />
@@ -47,7 +48,7 @@ class PoemForm extends Component {
               placeholder={"shakespear"}
               required
             />
-          </li>
+          </li> */}
           <br />
           <li>
             <label htmlFor="lines">
