@@ -57,6 +57,15 @@ class PoemList extends Component {
     return (
       <>
         <div className="poem-item">
+          {!this.props.buttonToggle ? (
+            <button
+              className="circle"
+              onClick={() => this.props.handleClick()}
+              type="submit"
+            ></button>
+          ) : null}
+        </div>
+        <div className="poem-item-wrapper">
           <ul>
             {this.context.poems.map((poem) => (
               <div key={parseInt(Date.now() * Math.random())}>
@@ -64,13 +73,20 @@ class PoemList extends Component {
                 <h2 className="title">{poem.title}</h2>
                 <h3>By {poem.author}</h3>
                 <br />
-
-                {/* {poem.lines.map((poem) => {
-                  return (
-                    <p key={parseInt(Date.now() * Math.random())}>{poem}</p>
-                  );
-                })} */}
-                <p> {poem.lines}</p>
+                {/* <p> {poem.lines}</p> */}
+                {/* {console.log(poem.lines.split(",").length)} */}
+                {!poem.lines.includes(",") ? (
+                  <p>{poem.lines}</p>
+                ) : (
+                  poem.lines
+                    .split(",")
+                    .map((p) => (
+                      <p key={parseInt(Date.now() * Math.random())}>{p}</p>
+                    ))
+                )}
+                {/* {poem.lines.split(",").map((p) => (
+                  <p key={parseInt(Date.now() * Math.random())}>{p}</p>
+                ))} */}
                 <br />
                 <p>Date: {moment(poem.date_created).format("LLL")}</p>
                 {/* {console.log(poem)} */}

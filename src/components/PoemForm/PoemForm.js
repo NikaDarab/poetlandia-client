@@ -19,24 +19,25 @@ class PoemForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <ul>
-          <li>
-            <label htmlFor="title">
-              <b>Title</b>
-              <br />
-              <span className="required">*</span>
-            </label>
-            <input
-              className="field-long"
-              type="text"
-              placeholder="Sonnet"
-              name="title"
-              required
-            />
-          </li>
-          <br />
-          {/* <li>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <ul>
+            <li>
+              <label htmlFor="title">
+                <b>Title</b>
+                <br />
+                <span className="required">*</span>
+              </label>
+              <input
+                className="field-long"
+                type="text"
+                placeholder="Sonnet"
+                name="title"
+                required
+              />
+            </li>
+            <br />
+            {/* <li>
             <label htmlFor="author">
               <b>Author</b>
               <br />
@@ -50,24 +51,25 @@ class PoemForm extends Component {
               required
             />
           </li> */}
-          <br />
-          <li>
-            <label htmlFor="lines">
-              <b>Poem</b>
-              <br />
-              <span className="required">*</span>
-            </label>
-            <textarea
-              className="field-long"
-              name="lines"
-              placeholder="a simple poem"
-              required
-            />
-          </li>
-          <br />
-        </ul>
-        <button>Add</button>
-      </form>
+            <br />
+            <li>
+              <label htmlFor="lines">
+                <b>Poem</b>
+                <br />
+                <span className="required">*</span>
+              </label>
+              <textarea
+                className="field-long"
+                name="lines"
+                placeholder="a simple poem"
+                required
+              />
+            </li>
+            <br />
+          </ul>
+          <button>Add</button>
+        </form>
+      </div>
     );
   }
 }

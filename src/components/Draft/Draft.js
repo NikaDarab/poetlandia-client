@@ -8,10 +8,12 @@ class Draft extends Component {
   static contextType = UserContext;
   state = {
     toggleForm: false,
+    buttonToggle: false,
   };
   handleClick = () => {
     this.setState({
       toggleForm: !this.state.toggleForm,
+      buttonToggle: !this.state.buttonToggle,
     });
   };
   render() {
@@ -19,9 +21,11 @@ class Draft extends Component {
       <>
         {/* <h1>Your Drafts</h1> */}
 
-        <div className="circle" onClick={this.handleClick} type="submit">
-          {" "}
-        </div>
+        {/* <button
+          className="circle"
+          onClick={this.handleClick}
+          type="submit"
+        ></button> */}
         {/* <div className="circle"></div> */}
         {this.state.toggleForm ? (
           <PoemForm
@@ -29,7 +33,10 @@ class Draft extends Component {
             handleClick={this.handleClick}
           />
         ) : null}
-        <PoemList />
+        <PoemList
+          handleClick={this.handleClick}
+          buttonToggle={this.state.buttonToggle}
+        />
       </>
     );
   }
