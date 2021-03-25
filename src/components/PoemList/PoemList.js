@@ -32,13 +32,13 @@ class PoemList extends Component {
     }
   };
 
-  handleFave = (title, author, lines, poemId) => {
+  handleFave = (title, author, lines, poemId, date_created) => {
     // console.log("faved");
     let library = {
       title: title,
       author: author,
       lines: lines,
-      date_created: new Date().toLocaleString(),
+      date_created: date_created,
     };
     console.log(library);
     LibraryApiService.postLibrary(library).then((library) =>
@@ -93,7 +93,8 @@ class PoemList extends Component {
                       poem.title,
                       poem.author,
                       poem.lines,
-                      poem.id
+                      poem.id,
+                      poem.date_created
                     )
                   }
                 >
