@@ -17,11 +17,12 @@ class Draft extends Component {
   render() {
     return (
       <>
-        <h1>Your Drafts</h1>
+        {/* <h1>Your Drafts</h1> */}
 
-        <Button onClick={this.handleClick} type="submit">
-          Add a poem
-        </Button>
+        <div className="circle" onClick={this.handleClick} type="submit">
+          {" "}
+        </div>
+        {/* <div className="circle"></div> */}
         {this.state.toggleForm ? (
           <PoemForm
             user={this.context.user.name}

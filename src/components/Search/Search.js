@@ -3,7 +3,7 @@ import { PoemContext } from "../../contexts/PoemContext";
 import Display from "./Display";
 class Search extends Component {
   state = {
-    resultToggle: false,
+    // resultToggle: false,
   };
   static contextType = PoemContext;
 
@@ -47,9 +47,9 @@ class Search extends Component {
           this.context.getPoems(poems);
         });
     }
-    this.setState({
-      resultToggle: !this.state.resultToggle,
-    });
+    // this.setState({
+    //   resultToggle: !this.state.resultToggle,
+    // });
   };
 
   handleAddLib = (poem) => {
@@ -78,7 +78,10 @@ class Search extends Component {
           </div>
           <input type="submit" value="Submit" />
         </form>
-        {this.state.resultToggle ? <Display poems={poems} /> : null}
+        {/* {this.state.resultToggle ? */}
+        <Display poems={poems} />
+
+        {/* : null} */}
       </>
     );
   }

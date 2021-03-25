@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { PoemContext } from "../../contexts/PoemContext";
 import PoemApiService from "../../services/poem-api-service";
+import moment from "moment";
 
 class EditPoem extends Component {
   static contextType = PoemContext;
@@ -12,12 +13,13 @@ class EditPoem extends Component {
       title: e.target.title.value,
       author: e.target.author.value,
       lines: e.target.lines.value.split(","),
+      date_created: moment().format("LLL"),
     };
     let poemId = this.props.poemId;
     PoemApiService.editPoem(newPoem, this.props.poemId).then(() =>
       this.context.editPoem(poemId, newPoem)
     );
-    this.props.handleEdit();
+    // this.props.handleEdit();
   };
   render() {
     return (

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
 * {
   box-sizing: border-box;
@@ -8,16 +9,25 @@
 }
 
 body {
+  font-family: fantasy;
+  /* font-size: 20px; */
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  /* line-height: 26.4px; */
   margin: 0;
   padding: 0;
-  font-family: "Source Sans Pro", Helvetica, sans-serif;
+
+  /* font-family: "Source Sans Pro", Helvetica, sans-serif; */
+  /* font-family: "Cedarville Cursive", cursive; */
+  /* font-family: cursive; */
+  font-weight: lighter;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url("./assets/poetlandia.png"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgb(217, 215, 235);
 }
 a:link {
   text-decoration: none;
@@ -28,12 +38,44 @@ a:link {
 
 .word-card {
   display: inline-block;
-  border: 2px solid tomato;
+  border: 2px solid rgb(25, 117, 31);
 }
 
 .start-button {
   display: flex;
   justify-content: center;
+}
+.circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(25, 117, 31);
+  position: relative;
+  margin: 10px 15%;
+}
+.circle::after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  height: 10px;
+  margin-top: -5px;
+  top: 50%;
+  left: 5px;
+  right: 5px;
+  z-index: 9;
+}
+.circle::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  width: 10px;
+  margin-left: -5px;
+  left: 50%;
+  top: 5px;
+  bottom: 5px;
+  z-index: 9;
 }
 @media only screen and (max-width: 600px) {
   .word-card {
@@ -51,6 +93,17 @@ h1 {
   margin: 0;
   padding: 0;
 }
+.title {
+  margin: 10px 0;
+}
+.poem-item {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 10%;
+  text-align: left;
+}
+
 li {
   display: inline-block;
   padding: 20px 43px;
@@ -84,7 +137,4 @@ nav {
     margin: 12px 0;
     padding: 10px 14px;
   }
-}
-.poem-item {
-  border: 0.2px solid black;
 }

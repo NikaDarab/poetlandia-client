@@ -4,10 +4,12 @@ import { PoemContext } from "../../contexts/PoemContext";
 import PoemApiService from "../../services/poem-api-service";
 import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
+import Display from "../Search/Display";
+import moment from "moment";
 
 class PoemList extends Component {
   state = {
-    editToggle: false,
+    editToggle: null,
   };
   static contextType = PoemContext;
   // static contextType = LibraryContext;
@@ -18,19 +20,25 @@ class PoemList extends Component {
     PoemApiService.deletePoem(poemId);
   };
 
-  handleEdit = () => {
-    this.setState({
-      editToggle: !this.state.editToggle,
-    });
-    console.log(this.state.editToggle);
+  handleEdit = (poemId) => {
+    if (this.state.editToggle === poemId) {
+      this.setState({
+        editToggle: null,
+      });
+    } else {
+      this.setState({
+        editToggle: poemId,
+      });
+    }
   };
 
   handleFave = (title, author, lines, poemId) => {
-    console.log("faved");
+    // console.log("faved");
     let library = {
       title: title,
       author: author,
-      lines: lines.split(","),
+      lines: lines,
+      date_created: new Date().toLocaleString(),
     };
     console.log(library);
     LibraryApiService.postLibrary(library).then((library) =>
@@ -48,21 +56,29 @@ class PoemList extends Component {
   render() {
     return (
       <>
-        <h2>List of poems</h2>
-        <div>
+        <div className="poem-item">
           <ul>
             {this.context.poems.map((poem) => (
-              <div className="poem-item" key={poem.id}>
-                <h2>Title :{poem.title}</h2>
-                <h3>Author :{poem.author}</h3>
-                <p>Poem: {poem.lines}</p>
-                <p>Date: {poem.date_created}</p>
-                {console.log(poem)}
+              <div key={parseInt(Date.now() * Math.random())}>
+                {/* <Display poem={poem} /> */}
+                <h2 className="title">{poem.title}</h2>
+                <h3>By {poem.author}</h3>
+                <br />
+
+                {/* {poem.lines.map((poem) => {
+                  return (
+                    <p key={parseInt(Date.now() * Math.random())}>{poem}</p>
+                  );
+                })} */}
+                <p> {poem.lines}</p>
+                <br />
+                <p>Date: {moment(poem.date_created).format("LLL")}</p>
+                {/* {console.log(poem)} */}
                 <button onClick={() => this.handleDelete(poem.id)}>
                   Delete
                 </button>
-                <button onClick={this.handleEdit}>Edit</button>
-                {this.state.editToggle ? (
+                <button onClick={() => this.handleEdit(poem.id)}>Edit</button>
+                {this.state.editToggle === poem.id ? (
                   <EditPoem
                     title={poem.title}
                     author={poem.author}

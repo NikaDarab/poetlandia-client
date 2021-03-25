@@ -1,6 +1,7 @@
 import { Component } from "react";
 import PoemApiService from "../../services/poem-api-service";
 import { PoemContext } from "../../contexts/PoemContext";
+import moment from "moment";
 class PoemForm extends Component {
   static contextType = PoemContext;
   handleSubmit = (e) => {
@@ -9,7 +10,7 @@ class PoemForm extends Component {
       title: e.target.title.value,
       author: this.props.user,
       lines: e.target.lines.value.split(","),
-      date_created: new Date().toLocaleString(),
+      date_created: moment().format("LLL"),
     };
     PoemApiService.postPoem(poem).then((poem) => this.context.addPoems(poem));
     console.log(this.context.poems);

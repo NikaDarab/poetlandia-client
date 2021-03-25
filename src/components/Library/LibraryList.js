@@ -14,10 +14,10 @@ class LibraryList extends Component {
     return (
       <>
         <h2>Library of all poems</h2>
-        <div>
+        <div className="poem-item">
           <ul>
             {this.context.libraries.map((library) => (
-              <div className="poem-item" key={library.id}>
+              <div key={library.id}>
                 <h2>Title :{library.title}</h2>
                 <h3>Author :{library.author}</h3>
                 <p>Poem: {library.lines}</p>

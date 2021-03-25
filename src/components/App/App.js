@@ -14,7 +14,7 @@ import { LibraryProvider } from "../../contexts/LibraryContext";
 import LibraryList from "../Library/LibraryList";
 import Draft from "../Draft/Draft";
 import EditPoem from "../PoemList/EditPoem";
-import poetlandia from "../../assets/poetlandia.png";
+// import poetlandia from "../../assets/poetlandia.png";
 
 // import "./App.css";
 
