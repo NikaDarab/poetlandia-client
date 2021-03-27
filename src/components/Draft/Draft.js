@@ -6,35 +6,35 @@ import UserContext from "../../contexts/UserContext";
 
 class Draft extends Component {
   static contextType = UserContext;
-  state = {
-    toggleForm: false,
-    buttonToggle: false,
-  };
-  handleClick = () => {
-    this.setState({
-      toggleForm: !this.state.toggleForm,
-      buttonToggle: !this.state.buttonToggle,
-    });
-  };
-  handleCancel = () => {
-    this.setState({
-      buttonToggle: !this.state.buttonToggle,
-    });
-    window.location = "/poemlist";
-  };
+  // state = {
+  //   toggleForm: false,
+  //   buttonToggle: false,
+  // };
+  // handleClick = () => {
+  //   this.setState({
+  //     toggleForm: !this.state.toggleForm,
+  //     buttonToggle: !this.state.buttonToggle,
+  //   });
+  // };
+  // handleCancel = () => {
+  //   this.setState({
+  //     buttonToggle: !this.state.buttonToggle,
+  //   });
+  //   window.location = "/poemlist";
+  // };
   render() {
     return (
       <>
-        {this.state.toggleForm ? (
+        {this.context.toggleForm ? (
           <PoemForm
             user={this.context.user.name}
-            handleClick={this.handleClick}
-            handleCancel={this.handleCancel}
+            handleClick={this.context.handleClick}
+            handleCancel={this.context.handleCancel}
           />
         ) : null}
         <PoemList
-          handleClick={this.handleClick}
-          buttonToggle={this.state.buttonToggle}
+          handleClick={this.context.handleClick}
+          // buttonToggle={this.state.buttonToggle}
         />
       </>
     );

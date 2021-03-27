@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { PoemContext } from "../../contexts/PoemContext";
+import UserContext from "../../contexts/UserContext";
 // import { LibraryContext } from "../../contexts/LibraryContext";
 import PoemApiService from "../../services/poem-api-service";
 import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
 import Display from "../Search/Display";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 class PoemList extends Component {
   state = {
     editToggle: null,
+    showPoem: false,
   };
   static contextType = PoemContext;
   // static contextType = LibraryContext;
@@ -32,13 +35,19 @@ class PoemList extends Component {
     }
   };
 
-  handleFave = (title, author, lines, poemId, date_created) => {
+  handleShow = () => {
+    this.setState({
+      showPoem: !this.state.showPoem,
+    });
+  };
+
+  handleFave = (title, author, lines, poemId) => {
     // console.log("faved");
     let library = {
       title: title,
       author: author,
       lines: lines,
-      date_created: date_created,
+      date_created: moment().format("LLL"),
     };
     console.log(library);
     LibraryApiService.postLibrary(library).then((library) =>
@@ -57,17 +66,20 @@ class PoemList extends Component {
     return (
       <>
         <div className="poem-item">
-          {!this.props.buttonToggle ? (
-            <div className="feather">
-              <button
-                // className="circle"
-                onClick={() => this.props.handleClick()}
-                type="submit"
-              >
-                <i className="fa fa-feather add"></i>
-              </button>
-            </div>
-          ) : null}
+          <UserContext.Consumer>
+            {(userContext) =>
+              !userContext.buttonToggle ? (
+                <div className="feather">
+                  <button
+                    onClick={() => this.props.handleClick()}
+                    type="submit"
+                  >
+                    <i className="fa fa-feather add"></i>
+                  </button>
+                </div>
+              ) : null
+            }
+          </UserContext.Consumer>
         </div>
 
         <div className="poem-item-wrapper">
@@ -89,8 +101,7 @@ class PoemList extends Component {
                           poem.title,
                           poem.author,
                           poem.lines,
-                          poem.id,
-                          poem.date_created
+                          poem.id
                         )
                       }
                     >
@@ -106,22 +117,26 @@ class PoemList extends Component {
                       handleEdit={this.handleEdit}
                     />
                   ) : null}
-                  <h2 className="title">{poem.title}</h2>
+                  <button>
+                    <h2 onClick={this.handleShow} className="title">
+                      {poem.title}
+                    </h2>
+                  </button>
 
                   <h3>By {poem.author}</h3>
                   <br />
+                  {this.state.showPoem ? (
+                    !poem.lines.includes(",") ? (
+                      <p>{poem.lines}</p>
+                    ) : (
+                      poem.lines
+                        .split(",")
+                        .map((p) => (
+                          <p key={parseInt(Date.now() * Math.random())}>{p}</p>
+                        ))
+                    )
+                  ) : null}
 
-                  {!poem.lines.includes(",") ? (
-                    <p>{poem.lines}</p>
-                  ) : (
-                    poem.lines
-                      .split(",")
-                      .map((p) => (
-                        <p key={parseInt(Date.now() * Math.random())}>{p}</p>
-                      ))
-                  )}
-
-                  <br />
                   <p>Posted on : {moment(poem.date_created).format("LLL")}</p>
                   <hr />
                   <br />

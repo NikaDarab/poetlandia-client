@@ -1,6 +1,7 @@
 import { Component } from "react";
 import PoemApiService from "../../services/poem-api-service";
 import { PoemContext } from "../../contexts/PoemContext";
+import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { Input, Required, Label } from "../Form/Form";
@@ -31,7 +32,11 @@ class PoemForm extends Component {
           <ul>
             <li>
               <label htmlFor="title">
-                title
+                <button className="delete-button" onClick={this.handleCancel}>
+                  {" "}
+                  <i className="far fa-times-circle fa-2x"></i>
+                </button>
+                Title
                 <br />
               </label>
               <div className="title-input">
@@ -42,7 +47,7 @@ class PoemForm extends Component {
             <br />
             <li>
               <label htmlFor="lines">
-                content
+                Content
                 <br />
               </label>
               <div>
@@ -53,12 +58,13 @@ class PoemForm extends Component {
                   required
                 />
               </div>
+              <button className="add-button">
+                {" "}
+                <i className="fas fa-plus-circle fa-2x"></i>
+              </button>
             </li>
             <br />
           </ul>
-          <button>Add</button>
-          <br />
-          <button onClick={this.handleCancel}>cancel</button>
         </form>
       </div>
     );

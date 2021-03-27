@@ -11,6 +11,8 @@ const UserContext = React.createContext({
   setUser: () => {},
   processLogin: () => {},
   processLogout: () => {},
+  toggleForm: false,
+  buttonToggle: false,
 });
 
 export default UserContext;
@@ -100,7 +102,18 @@ export class UserProvider extends Component {
         this.setError(err);
       });
   };
-
+  handleClick = () => {
+    this.setState({
+      toggleForm: !this.state.toggleForm,
+      buttonToggle: !this.state.buttonToggle,
+    });
+  };
+  handleCancel = () => {
+    this.setState({
+      buttonToggle: !this.state.buttonToggle,
+    });
+    window.location = "/poemlist";
+  };
   render() {
     const value = {
       user: this.state.user,
@@ -110,6 +123,10 @@ export class UserProvider extends Component {
       setUser: this.setUser,
       processLogin: this.processLogin,
       processLogout: this.processLogout,
+      toggleForm: this.state.toggleForm,
+      buttonToggle: this.state.buttonToggle,
+      handleClick: this.handleClick,
+      handleCancel: this.handleCancel,
     };
     return (
       <UserContext.Provider value={value}>

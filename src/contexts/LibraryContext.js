@@ -19,7 +19,7 @@ export class LibraryProvider extends Component {
 
   addLibrary = (library) => {
     this.setState({
-      libraries: [...this.state.libraries, library],
+      libraries: [library, ...this.state.libraries],
     });
   };
 

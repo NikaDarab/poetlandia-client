@@ -48,7 +48,7 @@ class Header extends Component {
             </li>
 
             {/* <li>
-              <Link to="/poemform">
+              <Link to="/poemform" handleClick={this.context.handleClick}>
                 {" "}
                 <div className="feather">
                   <button type="submit">
@@ -58,9 +58,9 @@ class Header extends Component {
               </Link>
             </li> */}
 
-            {/* <li>
+            <li>
               <Link to="/search">Search</Link>
-            </li> */}
+            </li>
             <li>
               <Link to="/drafts">Drafts</Link>
             </li>
