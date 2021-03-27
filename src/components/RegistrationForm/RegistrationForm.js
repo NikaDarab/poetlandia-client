@@ -55,14 +55,14 @@ class RegistrationForm extends Component {
     return (
       <div>
         <div className="description">
-          <p className="animate__animated animate__pulse ">Poetlandia</p>
+          {/* <p className="animate__animated animate__pulse ">Poetlandia</p> */}
         </div>
 
         <div className="login-form register">
           <div>
             <h2 style={{ display: "none" }}>Sign up</h2>
           </div>
-          <form onSubmit={this.handleSubmit}>
+          <form className="registration-form" onSubmit={this.handleSubmit}>
             <div role="alert">{error && <p>{error}</p>}</div>
             <div>
               <Label htmlFor="registration-name-input">

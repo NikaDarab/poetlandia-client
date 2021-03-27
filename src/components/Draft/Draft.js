@@ -16,21 +16,20 @@ class Draft extends Component {
       buttonToggle: !this.state.buttonToggle,
     });
   };
+  handleCancel = () => {
+    this.setState({
+      buttonToggle: !this.state.buttonToggle,
+    });
+    window.location = "/poemlist";
+  };
   render() {
     return (
       <>
-        {/* <h1>Your Drafts</h1> */}
-
-        {/* <button
-          className="circle"
-          onClick={this.handleClick}
-          type="submit"
-        ></button> */}
-        {/* <div className="circle"></div> */}
         {this.state.toggleForm ? (
           <PoemForm
             user={this.context.user.name}
             handleClick={this.handleClick}
+            handleCancel={this.handleCancel}
           />
         ) : null}
         <PoemList

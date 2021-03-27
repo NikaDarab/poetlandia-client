@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { PoemContext } from "../../contexts/PoemContext";
+import { UserContext } from "../../contexts/UserContext";
 import PoemApiService from "../../services/poem-api-service";
 import moment from "moment";
 
@@ -8,7 +9,6 @@ class EditPoem extends Component {
 
   handleEdit = (e) => {
     e.preventDefault();
-    console.log("edit");
     let newPoem = {
       title: e.target.title.value,
       author: e.target.author.value,

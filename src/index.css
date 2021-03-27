@@ -45,43 +45,7 @@ a:link {
   display: flex;
   justify-content: center;
 }
-.circle {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  background-color: rgb(1, 10, 1);
-  position: relative;
-  margin: 0 15%;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  padding: 0 20px;
-  float: right;
-}
-.circle::after {
-  content: " ";
-  position: absolute;
-  display: block;
-  background-color: #fff;
-  height: 10px;
-  margin-top: -5px;
-  top: 50%;
-  left: 5px;
-  right: 5px;
-  z-index: 9;
-}
-.circle::before {
-  content: " ";
-  position: absolute;
-  display: block;
-  background-color: #fff;
-  width: 10px;
-  margin-left: -5px;
-  left: 50%;
-  top: 5px;
-  bottom: 5px;
-  z-index: 9;
-}
+
 @media only screen and (max-width: 600px) {
   .word-card {
     font-size: 10px;
@@ -89,9 +53,6 @@ a:link {
   }
   .circle {
     margin: 1% 0;
-  }
-  .poem-item {
-    /* padding: 100px 0; */
   }
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
@@ -109,7 +70,7 @@ h1 {
 }
 .poem-item {
   margin: 10px;
-  display: flex;
+  /* display: flex; */
   /* justify-content: left; */
   /* padding: 30px; */
   text-align: left;
@@ -121,7 +82,12 @@ h1 {
   align-items: center;
   justify-content: center;
 }
-
+.poem-form {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+}
 li {
   display: inline-block;
   padding: 20px 43px;
@@ -155,4 +121,61 @@ nav {
     margin: 12px 0;
     padding: 10px 14px;
   }
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  margin: 10% 0;
+  color: rgb(85, 83, 83);
+}
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  resize: vertical;
+  padding: 12px 12px 20px 0;
+  cursor: pointer;
+  float: right;
+}
+
+label {
+  padding: 0px;
+  /* display: inline-block; */
+}
+.title-input {
+  width: 300px;
+}
+.lines-input {
+  width: 300px;
+  height: 300px;
+}
+button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+.edit-delete {
+  background-color: white;
+  margin: 30px 0;
+}
+
+.delete,
+.edit {
+  padding: 0 35px;
+  font-size: 24px;
+}
+.add {
+  font-size: 40px;
+}
+
+.feather {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+  margin: 20px 0 0 0;
 }

@@ -46,6 +46,18 @@ class Header extends Component {
             <li className="spaced">
               <Link to="/">POETLANDIA</Link>
             </li>
+
+            {/* <li>
+              <Link to="/poemform">
+                {" "}
+                <div className="feather">
+                  <button type="submit">
+                    <i className="fa fa-feather add"></i>
+                  </button>
+                </div>
+              </Link>
+            </li> */}
+
             {/* <li>
               <Link to="/search">Search</Link>
             </li> */}

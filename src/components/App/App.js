@@ -14,6 +14,8 @@ import { LibraryProvider } from "../../contexts/LibraryContext";
 import LibraryList from "../Library/LibraryList";
 import Draft from "../Draft/Draft";
 import EditPoem from "../PoemList/EditPoem";
+import PoemList from "../PoemList/PoemList";
+import PoemForm from "../PoemForm/PoemForm";
 // import poetlandia from "../../assets/poetlandia.png";
 
 // import "./App.css";
@@ -44,6 +46,8 @@ export default class App extends Component {
                   <PrivateRoute path={"/drafts"} component={Draft} />
                   <Route path={"/library"} component={LibraryList} />
                   <PrivateRoute path={"/edit"} component={EditPoem} />
+                  <PrivateRoute path={"/poemlist"} component={PoemList} />
+                  <PrivateRoute path={"/poemform"} component={PoemForm} />
                   <PublicOnlyRoute
                     path={"/register"}
                     component={RegistrationRoute}

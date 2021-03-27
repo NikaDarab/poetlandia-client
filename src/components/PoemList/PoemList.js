@@ -58,64 +58,74 @@ class PoemList extends Component {
       <>
         <div className="poem-item">
           {!this.props.buttonToggle ? (
-            <button
-              className="circle"
-              onClick={() => this.props.handleClick()}
-              type="submit"
-            ></button>
+            <div className="feather">
+              <button
+                // className="circle"
+                onClick={() => this.props.handleClick()}
+                type="submit"
+              >
+                <i className="fa fa-feather add"></i>
+              </button>
+            </div>
           ) : null}
         </div>
+
         <div className="poem-item-wrapper">
           <ul>
             {this.context.poems.map((poem) => (
               <div key={parseInt(Date.now() * Math.random())}>
-                {/* <Display poem={poem} /> */}
-                <h2 className="title">{poem.title}</h2>
-                <h3>By {poem.author}</h3>
-                <br />
-                {/* <p> {poem.lines}</p> */}
-                {/* {console.log(poem.lines.split(",").length)} */}
-                {!poem.lines.includes(",") ? (
-                  <p>{poem.lines}</p>
-                ) : (
-                  poem.lines
-                    .split(",")
-                    .map((p) => (
-                      <p key={parseInt(Date.now() * Math.random())}>{p}</p>
-                    ))
-                )}
-                {/* {poem.lines.split(",").map((p) => (
-                  <p key={parseInt(Date.now() * Math.random())}>{p}</p>
-                ))} */}
-                <br />
-                <p>Date: {moment(poem.date_created).format("LLL")}</p>
-                {/* {console.log(poem)} */}
-                <button onClick={() => this.handleDelete(poem.id)}>
-                  Delete
-                </button>
-                <button onClick={() => this.handleEdit(poem.id)}>Edit</button>
-                {this.state.editToggle === poem.id ? (
-                  <EditPoem
-                    title={poem.title}
-                    author={poem.author}
-                    lines={poem.lines}
-                    poemId={poem.id}
-                    handleEdit={this.handleEdit}
-                  />
-                ) : null}
-                <button
-                  onClick={() =>
-                    this.handleFave(
-                      poem.title,
-                      poem.author,
-                      poem.lines,
-                      poem.id,
-                      poem.date_created
-                    )
-                  }
-                >
-                  Publish
-                </button>
+                <div>
+                  <div className="edit-delete">
+                    <button onClick={() => this.handleDelete(poem.id)}>
+                      <i className="fa fa-trash delete" aria-hidden="true"></i>
+                    </button>
+
+                    <button onClick={() => this.handleEdit(poem.id)}>
+                      <i className="fa fa-edit edit" aria-hidden="true"></i>
+                    </button>
+                    <button
+                      onClick={() =>
+                        this.handleFave(
+                          poem.title,
+                          poem.author,
+                          poem.lines,
+                          poem.id,
+                          poem.date_created
+                        )
+                      }
+                    >
+                      publish
+                    </button>
+                  </div>
+                  {this.state.editToggle === poem.id ? (
+                    <EditPoem
+                      title={poem.title}
+                      author={poem.author}
+                      lines={poem.lines}
+                      poemId={poem.id}
+                      handleEdit={this.handleEdit}
+                    />
+                  ) : null}
+                  <h2 className="title">{poem.title}</h2>
+
+                  <h3>By {poem.author}</h3>
+                  <br />
+
+                  {!poem.lines.includes(",") ? (
+                    <p>{poem.lines}</p>
+                  ) : (
+                    poem.lines
+                      .split(",")
+                      .map((p) => (
+                        <p key={parseInt(Date.now() * Math.random())}>{p}</p>
+                      ))
+                  )}
+
+                  <br />
+                  <p>Posted on : {moment(poem.date_created).format("LLL")}</p>
+                  <hr />
+                  <br />
+                </div>
               </div>
             ))}
           </ul>
