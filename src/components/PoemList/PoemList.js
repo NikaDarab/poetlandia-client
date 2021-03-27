@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 class PoemList extends Component {
   state = {
     editToggle: null,
-    showPoem: false,
+    showPoem: null,
   };
   static contextType = PoemContext;
   // static contextType = LibraryContext;
@@ -35,10 +35,16 @@ class PoemList extends Component {
     }
   };
 
-  handleShow = () => {
-    this.setState({
-      showPoem: !this.state.showPoem,
-    });
+  handleShow = (poemId) => {
+    if (this.state.showPoem === poemId) {
+      this.setState({
+        showPoem: null,
+      });
+    } else {
+      this.setState({
+        showPoem: poemId,
+      });
+    }
   };
 
   handleFave = (title, author, lines, poemId) => {
@@ -118,14 +124,17 @@ class PoemList extends Component {
                     />
                   ) : null}
                   <button>
-                    <h2 onClick={this.handleShow} className="title">
+                    <h2
+                      onClick={() => this.handleShow(poem.id)}
+                      className="title"
+                    >
                       {poem.title}
                     </h2>
                   </button>
 
                   <h3>By {poem.author}</h3>
                   <br />
-                  {this.state.showPoem ? (
+                  {this.state.showPoem === poem.id ? (
                     !poem.lines.includes(",") ? (
                       <p>{poem.lines}</p>
                     ) : (

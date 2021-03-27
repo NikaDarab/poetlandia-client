@@ -103,7 +103,12 @@ nav {
   float: right;
   margin: -55px 0;
 }
-
+.search-bar {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+}
 .username {
   display: flex;
   text-align: left;
@@ -132,7 +137,18 @@ a:visited {
   }
 }
 
-.login-form {
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  /* float: right; */
+  /* align-items: center; */
+  margin: 40px 40px;
+}
+
+.login-form,
+.search-bar {
   display: flex;
   justify-content: center;
   margin: 10% 0;

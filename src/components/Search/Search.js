@@ -1,13 +1,16 @@
 import { Component } from "react";
-import { PoemContext } from "../../contexts/PoemContext";
+import { SearchContext } from "../../contexts/SearchContext";
 import Display from "./Display";
 class Search extends Component {
   state = {
-    // resultToggle: false,
+    formSubmitted: null,
   };
-  static contextType = PoemContext;
+  static contextType = SearchContext;
 
   handleSubmit = (e) => {
+    this.setState({
+      formSubmitted: !this.state.formSubmitted,
+    });
     e.preventDefault();
     let poet = e.target.poet.value;
     let title = e.target.poem.value;
@@ -17,6 +20,7 @@ class Search extends Component {
       fetch(`${baseUrl}${poet};${title}`)
         .then((res) => {
           if (!res.ok) {
+            alert("no results :-(");
             return res.json().then((e) => Promise.reject(e));
           }
 
@@ -47,9 +51,6 @@ class Search extends Component {
           this.context.getPoems(poems);
         });
     }
-    // this.setState({
-    //   resultToggle: !this.state.resultToggle,
-    // });
   };
 
   handleAddLib = (poem) => {
@@ -63,23 +64,30 @@ class Search extends Component {
     console.log(poems);
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="name">
-              Name of the poet
-              <input type="text" name="poet" />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="poem">
-              Name of the poem
-              <input type="text" name="poem" />
-            </label>
-          </div>
-          <input type="submit" value="Submit" />
-        </form>
-        {/* {this.state.resultToggle ? */}
-        <Display poems={poems} />
+        <div className="search-bar">
+          <form onSubmit={this.handleSubmit}>
+            {console.log(this.state.formSubmitted)}
+            <div>
+              <label htmlFor="name">
+                Name of the poet
+                <input type="text" name="poet" />
+              </label>
+            </div>
+            <div>
+              <label htmlFor="poem">
+                Name of the poem
+                <input type="text" name="poem" />
+              </label>
+            </div>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        {this.state.formSubmitted && !this.context.poems.length ? (
+          <p className="results">No results :-( Try again!</p>
+        ) : this.state.formSubmitted && this.context.poems.length ? (
+          <Display poems={this.context.poems} />
+        ) : null}
+        {}
 
         {/* : null} */}
       </>
