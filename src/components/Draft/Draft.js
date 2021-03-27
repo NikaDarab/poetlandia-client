@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Button from "../Button/Button";
 import PoemForm from "../PoemForm/PoemForm";
 import PoemList from "../PoemList/PoemList";
 import UserContext from "../../contexts/UserContext";

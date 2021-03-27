@@ -3,12 +3,16 @@ import React, { Component } from "react";
 
 export const LibraryContext = React.createContext({
   libraries: [],
+  filterdByPoem: null,
+  filteredByPoet: null,
 });
 
 export class LibraryProvider extends Component {
   state = {
     libraries: [],
     error: null,
+    filterdByPoem: null,
+    filteredByPoet: null,
   };
 
   getLibraries = (libraries) => {
@@ -39,13 +43,21 @@ export class LibraryProvider extends Component {
     this.setState({ libraries });
   };
 
+  handleFilterPoem = (poem) => {
+    this.setState({
+      filteredByPoem: poem,
+    });
+  };
+
   render() {
     let value = {
       libraries: this.state.libraries,
+      filterdByPoem: this.state.filterdByPoem,
       getLibraries: this.getLibraries,
       addLibrary: this.addLibrary,
       deleteLibrary: this.deleteLibrary,
       editLibrary: this.editLibrary,
+      handleFilterPoem: this.handleFilterPoem,
     };
     return (
       <LibraryContext.Provider value={value}>

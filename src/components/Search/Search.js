@@ -17,6 +17,7 @@ class Search extends Component {
     // console.log(poet, title);
     if (poet.length && title.length) {
       let baseUrl = "https://poetrydb.org/author,title/";
+
       fetch(`${baseUrl}${poet};${title}`)
         .then((res) => {
           if (!res.ok) {
@@ -59,29 +60,35 @@ class Search extends Component {
     // console.log(poem);
   };
 
+  renderSearchBar = () => {
+    return (
+      <div className="search-bar">
+        <form onSubmit={this.handleSubmit}>
+          {console.log(this.state.formSubmitted)}
+          <div>
+            <label htmlFor="name">
+              Name of the poet
+              <input type="text" name="poet" />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="poem">
+              Name of the poem
+              <input type="text" name="poem" />
+            </label>
+          </div>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    );
+  };
+
   render() {
     let poems = this.context.poems;
     console.log(poems);
     return (
       <>
-        <div className="search-bar">
-          <form onSubmit={this.handleSubmit}>
-            {console.log(this.state.formSubmitted)}
-            <div>
-              <label htmlFor="name">
-                Name of the poet
-                <input type="text" name="poet" />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="poem">
-                Name of the poem
-                <input type="text" name="poem" />
-              </label>
-            </div>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+        {this.renderSearchBar()}
         {this.state.formSubmitted && !this.context.poems.length ? (
           <p className="results">No results :-( Try again!</p>
         ) : this.state.formSubmitted && this.context.poems.length ? (
