@@ -77,7 +77,7 @@ class Search extends Component {
               <input type="text" name="poem" />
             </label>
           </div>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Search" />
         </form>
       </div>
     );

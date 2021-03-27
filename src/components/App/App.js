@@ -34,41 +34,39 @@ export default class App extends Component {
     const { hasError } = this.state;
     return (
       <BrowserRouter>
-        <SearchProvider>
-          <ContextsProvider>
-            <LibraryProvider>
-              <div className="App">
-                <main>
-                  <Header />
+        <ContextsProvider>
+          <LibraryProvider>
+            <div className="App">
+              <main>
+                <Header />
 
-                  {hasError && <p>There was an error! Oh no!</p>}
+                {hasError && <p>There was an error! Oh no!</p>}
 
-                  <Switch>
-                    <PrivateRoute exact path={"/"} component={DashboardRoute} />
-                    <PrivateRoute path={"/drafts"} component={Draft} />
-                    <Route path={"/library"} component={LibraryList} />
-                    <PrivateRoute path={"/edit"} component={EditPoem} />
-                    <PrivateRoute path={"/poemlist"} component={PoemList} />
-                    <PrivateRoute path={"/poemform"} component={PoemForm} />
-                    <PublicOnlyRoute
-                      path={"/register"}
-                      component={RegistrationRoute}
-                    />
+                <Switch>
+                  <PrivateRoute exact path={"/"} component={DashboardRoute} />
+                  <PrivateRoute path={"/drafts"} component={Draft} />
+                  <Route path={"/library"} component={LibraryList} />
+                  <PrivateRoute path={"/edit"} component={EditPoem} />
+                  <PrivateRoute path={"/poemlist"} component={PoemList} />
+                  <PrivateRoute path={"/poemform"} component={PoemForm} />
+                  <PublicOnlyRoute
+                    path={"/register"}
+                    component={RegistrationRoute}
+                  />
 
-                    <Route path="/search" component={Search} />
-                    <PublicOnlyRoute path={"/login"} component={LoginRoute} />
-                    <Route component={NotFoundRoute} />
-                  </Switch>
-                </main>
-                <footer>
-                  {/* <div className="background-img">
+                  <Route path="/search" component={Search} />
+                  <PublicOnlyRoute path={"/login"} component={LoginRoute} />
+                  <Route component={NotFoundRoute} />
+                </Switch>
+              </main>
+              <footer>
+                {/* <div className="background-img">
                   <img src={poetlandia} alt="" />
                 </div> */}
-                </footer>
-              </div>
-            </LibraryProvider>
-          </ContextsProvider>
-        </SearchProvider>
+              </footer>
+            </div>
+          </LibraryProvider>
+        </ContextsProvider>
       </BrowserRouter>
     );
   }

@@ -23,32 +23,12 @@ class LibraryList extends Component {
   handleFilter = (e) => {
     e.preventDefault();
     let poem = e.target.poem.value;
+    console.log(poem);
     // this.context.handleFilteredPoem(poem);
     this.context.handleFilterPoem(poem);
     console.log(this.context.filteredByPoem);
   };
 
-  renderSearchBar = () => {
-    return (
-      <div className="search-bar">
-        <form onSubmit={this.handleFilter}>
-          {/* <div>
-            <label htmlFor="name">
-              Name of the poet
-              <input type="text" name="poet" />
-            </label>
-          </div> */}
-          <div>
-            <label htmlFor="poem">
-              Name of the poem
-              <input type="text" name="poem" />
-            </label>
-          </div>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    );
-  };
   componentDidMount = () => {
     LibraryApiService.getLibrary().then((library) => {
       this.context.getLibraries(library);
@@ -56,17 +36,38 @@ class LibraryList extends Component {
   };
   render() {
     let libraries = this.context.libraries;
-    if (this.context.handleFilterPoem) {
-      libraries = this.context.libraries.filter((library) =>
-        library.title.includes(this.context.filteredByPoem)
+    console.log(libraries);
+    if (this.context.filteredByPoem) {
+      libraries = this.context.libraries.filter(
+        (library) =>
+          library.title
+            .toLowerCase()
+            .includes(this.context.filteredByPoem.toLowerCase()) ||
+          library.author
+            .toLowerCase()
+            .includes(this.context.filteredByPoem.toLowerCase()) ||
+          library.lines
+            .toLowerCase()
+            .includes(this.context.filteredByPoem.toLowerCase())
       );
     }
+
     return (
       <>
-        {this.renderSearchBar()}
+        <div className="search-bar">
+          <form onSubmit={this.handleFilter}>
+            <div>
+              <label htmlFor="poem">
+                key word
+                <input type="text" name="poem" />
+              </label>
+            </div>
+            <input type="submit" value="Search" />
+          </form>
+        </div>
         <div className="poem-item-wrapper" style={{ margin: "20px 0" }}>
           <ul>
-            {this.context.libraries.map((library) => (
+            {libraries.map((library) => (
               <div key={parseInt(Date.now() * Math.random())}>
                 <div>
                   <button onClick={() => this.handleShow(library.id)}>

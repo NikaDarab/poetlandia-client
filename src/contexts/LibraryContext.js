@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 export const LibraryContext = React.createContext({
   libraries: [],
-  filterdByPoem: null,
+  filteredByPoem: null,
   filteredByPoet: null,
 });
 
@@ -11,7 +11,7 @@ export class LibraryProvider extends Component {
   state = {
     libraries: [],
     error: null,
-    filterdByPoem: null,
+    filteredByPoem: null,
     filteredByPoet: null,
   };
 
@@ -47,12 +47,13 @@ export class LibraryProvider extends Component {
     this.setState({
       filteredByPoem: poem,
     });
+    console.log(this.state.filteredByPoem);
   };
 
   render() {
     let value = {
       libraries: this.state.libraries,
-      filterdByPoem: this.state.filterdByPoem,
+      filteredByPoem: this.state.filteredByPoem,
       getLibraries: this.getLibraries,
       addLibrary: this.addLibrary,
       deleteLibrary: this.deleteLibrary,

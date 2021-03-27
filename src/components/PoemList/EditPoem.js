@@ -32,7 +32,7 @@ class EditPoem extends Component {
               <span className="required">*</span>
             </label>
             <input
-              className="field-long"
+              className="title-input"
               type="text"
               placeholder={this.props.title}
               defaultValue={this.props.title}
@@ -48,12 +48,12 @@ class EditPoem extends Component {
               <span className="required">*</span>
             </label>
             <input
-              className="field-long"
+              className=" title-input"
               type="text"
               name="author"
               placeholder={this.props.author}
-              defaultValue={this.props.author}
-              required
+              Value={this.props.author}
+              readonly="readonly"
             />
           </li>
           <br />
@@ -64,7 +64,7 @@ class EditPoem extends Component {
               <span className="required">*</span>
             </label>
             <textarea
-              className="field-long"
+              className="lines-input"
               name="lines"
               placeholder={this.props.lines}
               defaultValue={this.props.lines}
