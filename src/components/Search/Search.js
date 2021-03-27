@@ -39,7 +39,7 @@ class Search extends Component {
           return response.json();
         })
         .then((poems) => {
-          this.context.getPoems(poems);
+          return poems.length ? this.context.getPoems(poems) : null;
         });
     }
     if (!poet.length) {
