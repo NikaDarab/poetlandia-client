@@ -67,21 +67,20 @@ class LibraryList extends Component {
             .toLowerCase()
             .includes(this.context.filteredByPoem.toLowerCase())
       );
+    } else {
+      libraries = this.context.libraries;
     }
 
     return (
       <>
         <div className="search-bar">
-          <form onSubmit={this.handleFilter}>
-            <div>
-              <label htmlFor="poem">
-                key word
-                <input type="text" name="poem" />
-              </label>
-            </div>
-            <input type="submit" value="Search" />
+          <form id="demo-2" onSubmit={this.handleFilter}>
+            <label htmlFor="poem">
+              <input type="search" placeholder="Search" name="poem" />
+            </label>
           </form>
         </div>
+
         <div className="poem-item-wrapper" style={{ margin: "20px 0" }}>
           <ul>
             {libraries.map((library) => (

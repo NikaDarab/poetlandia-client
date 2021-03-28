@@ -105,9 +105,10 @@ nav {
 }
 .search-bar {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   text-align: left;
-  align-items: center;
+  align-items: flex-start;
+  margin: 0 80px;
 }
 .username {
   display: flex;
@@ -142,13 +143,11 @@ a:visited {
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  /* float: right; */
-  /* align-items: center; */
+
   margin: 40px 40px;
 }
 
-.login-form,
-.search-bar {
+.login-form {
   display: flex;
   justify-content: center;
   margin: 10% 0;
@@ -225,4 +224,76 @@ button {
   /* float: right; */
   align-items: center;
   margin: 40px 40px;
+}
+
+input {
+  outline: none;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+  display: none;
+}
+
+input[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    9px center;
+  border: none;
+  padding: 9px 10px 9px 32px;
+  width: 55px;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+input[type="search"]:focus {
+  width: 130px;
+  background-color: #fff;
+  border-color: #66cc75;
+
+  /* -webkit-box-shadow: 0 0 5px black; */
+  /* -moz-box-shadow: black; */
+  /* box-shadow: 0 0 5px black; */
+}
+
+input:-moz-placeholder {
+  color: #999;
+}
+input::-webkit-input-placeholder {
+  color: #999;
+}
+
+/* Demo 2 */
+#demo-2 input[type="search"] {
+  width: 15px;
+  padding-left: 10px;
+  color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+}
+#demo-2 input[type="search"] {
+  background-color: white;
+}
+#demo-2 input[type="search"]:hover {
+  background-color: #fff;
+}
+#demo-2 input[type="search"]:focus {
+  width: 130px;
+  padding-left: 32px;
+  color: #000;
+  background-color: #fff;
+  cursor: auto;
+}
+#demo-2 input:-moz-placeholder {
+  color: transparent;
+}
+#demo-2 input::-webkit-input-placeholder {
+  color: transparent;
 }
