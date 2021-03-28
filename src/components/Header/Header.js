@@ -57,10 +57,10 @@ class Header extends Component {
                 </div>
               </Link>
             </li> */}
-
+            {/* 
             <li>
               <Link to="/search">Search</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/drafts">Drafts</Link>
             </li>

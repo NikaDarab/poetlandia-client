@@ -3,7 +3,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 import Display from "./Display";
 class Search extends Component {
   state = {
-    formSubmitted: null,
+    formSubmitted: false,
   };
   static contextType = SearchContext;
 
@@ -36,6 +36,9 @@ class Search extends Component {
       let baseUrl = "https://poetrydb.org/author/";
       fetch(`${baseUrl + poet}`)
         .then((response) => {
+          if (!response.ok) {
+            alert("did not  find ot");
+          }
           return response.json();
         })
         .then((poems) => {
@@ -89,9 +92,9 @@ class Search extends Component {
     return (
       <>
         {this.renderSearchBar()}
-        {this.state.formSubmitted && !this.context.poems.length ? (
-          <p className="results">No results :-( Try again!</p>
-        ) : this.state.formSubmitted && this.context.poems.length ? (
+        {!this.context.poems && this.state.formSubmitted ? (
+          <p>no results, try again!</p>
+        ) : this.context.poems ? (
           <Display poems={this.context.poems} />
         ) : null}
         {}

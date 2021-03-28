@@ -1,11 +1,14 @@
 import { Component } from "react";
 import { LibraryContext } from "../../contexts/LibraryContext";
 import LibraryApiService from "../../services/library-api-services";
+import UserContext from "../../contexts/UserContext";
+import EditLibrary from "./EditLibrary";
 
 import moment from "moment";
 class LibraryList extends Component {
   static contextType = LibraryContext;
   state = {
+    editToggle: null,
     showLibrary: null,
   };
   handleShow = (libraryId) => {
@@ -20,11 +23,26 @@ class LibraryList extends Component {
     }
   };
 
+  handleDelete = (libraryId) => {
+    this.context.deleteLibrary(libraryId);
+    LibraryApiService.deleteLibrary(libraryId);
+  };
+  handleEdit = (libraryId) => {
+    if (this.state.editToggle === libraryId) {
+      this.setState({
+        editToggle: null,
+      });
+    } else {
+      this.setState({
+        editToggle: libraryId,
+      });
+    }
+    console.log(libraryId);
+  };
   handleFilter = (e) => {
     e.preventDefault();
     let poem = e.target.poem.value;
     console.log(poem);
-    // this.context.handleFilteredPoem(poem);
     this.context.handleFilterPoem(poem);
     console.log(this.context.filteredByPoem);
   };
@@ -36,7 +54,6 @@ class LibraryList extends Component {
   };
   render() {
     let libraries = this.context.libraries;
-    console.log(libraries);
     if (this.context.filteredByPoem) {
       libraries = this.context.libraries.filter(
         (library) =>
@@ -70,6 +87,57 @@ class LibraryList extends Component {
             {libraries.map((library) => (
               <div key={parseInt(Date.now() * Math.random())}>
                 <div>
+                  <div id="wrap" style={{ position: "relative" }}>
+                    <UserContext.Consumer>
+                      {(userContext) => (
+                        <div id="left">
+                          <button
+                            onClick={() => this.handleDelete(library.id)}
+                            style={{
+                              display:
+                                library.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            <i
+                              className="fa fa-trash delete"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                        </div>
+                      )}
+                    </UserContext.Consumer>
+                    <UserContext.Consumer>
+                      {(userContext) => (
+                        <div id="right">
+                          <button
+                            onClick={() => this.handleEdit(library.id)}
+                            style={{
+                              display:
+                                library.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            <i
+                              className="fa fa-edit edit"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                        </div>
+                      )}
+                    </UserContext.Consumer>
+                  </div>
+                  {this.state.editToggle === library.id ? (
+                    <EditLibrary
+                      title={library.title}
+                      author={library.author}
+                      lines={library.lines}
+                      libraryId={library.id}
+                      handleEdit={this.handleEdit}
+                    />
+                  ) : null}
                   <button onClick={() => this.handleShow(library.id)}>
                     <h2 className="title">{library.title}</h2>
                   </button>
@@ -93,7 +161,6 @@ class LibraryList extends Component {
                       ))
                     )
                   ) : null}
-
                   <hr />
                   <br />
                 </div>

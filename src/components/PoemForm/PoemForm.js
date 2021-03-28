@@ -1,10 +1,9 @@
 import { Component } from "react";
 import PoemApiService from "../../services/poem-api-service";
 import { PoemContext } from "../../contexts/PoemContext";
-import { UserContext } from "../../contexts/UserContext";
-import { Link } from "react-router-dom";
+
 import moment from "moment";
-import { Input, Required, Label } from "../Form/Form";
+
 class PoemForm extends Component {
   static contextType = PoemContext;
   handleSubmit = (e) => {

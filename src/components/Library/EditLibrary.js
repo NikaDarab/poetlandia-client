@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import { PoemContext } from "../../contexts/PoemContext";
+import { LibraryContext } from "../../contexts/LibraryContext";
 
-import PoemApiService from "../../services/poem-api-service";
+import LibraryApiService from "../../services/library-api-services";
 import moment from "moment";
 
 class EditPoem extends Component {
-  static contextType = PoemContext;
+  static contextType = LibraryContext;
 
   handleEdit = (e) => {
     e.preventDefault();
-    let newPoem = {
+    let newLibrary = {
       title: e.target.title.value,
       author: e.target.author.value,
       lines: e.target.lines.value.split(","),
       date_created: moment().format("LLL"),
     };
-    let poemId = this.props.poemId;
-    PoemApiService.editPoem(newPoem, this.props.poemId).then(() =>
-      this.context.editPoem(poemId, newPoem)
+    let libraryId = this.props.libraryId;
+    LibraryApiService.editLibrary(newLibrary, this.props.libraryId).then(() =>
+      this.context.editLibrary(libraryId, newLibrary)
     );
     // this.props.handleEdit();
   };

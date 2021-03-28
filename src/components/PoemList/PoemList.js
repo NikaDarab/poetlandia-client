@@ -5,9 +5,8 @@ import UserContext from "../../contexts/UserContext";
 import PoemApiService from "../../services/poem-api-service";
 import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
-import Display from "../Search/Display";
+
 import moment from "moment";
-import { Link } from "react-router-dom";
 
 class PoemList extends Component {
   state = {
@@ -15,10 +14,8 @@ class PoemList extends Component {
     showPoem: null,
   };
   static contextType = PoemContext;
-  // static contextType = LibraryContext;
 
   handleDelete = (poemId) => {
-    // console.log(poemId);
     this.context.deletePoem(poemId);
     PoemApiService.deletePoem(poemId);
   };
