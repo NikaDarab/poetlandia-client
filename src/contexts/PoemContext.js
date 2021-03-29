@@ -26,7 +26,7 @@ export class ContextsProvider extends Component {
 
   addPoems = (poem) => {
     this.setState({
-      poems: [...this.state.poems, poem],
+      poems: [poem, ...this.state.poems],
     });
   };
 
@@ -51,7 +51,7 @@ export class ContextsProvider extends Component {
 
   addLibrary = (library) => {
     this.setState({
-      libraries: [...this.state.libraries, library],
+      libraries: [library, ...this.state.libraries],
     });
   };
 

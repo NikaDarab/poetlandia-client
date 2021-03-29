@@ -3,7 +3,7 @@ import { PoemContext } from "../../contexts/PoemContext";
 import UserContext from "../../contexts/UserContext";
 // import { LibraryContext } from "../../contexts/LibraryContext";
 import CollaborationApiService from "../../services/collaboration-api-service";
-// import LibraryApiService from "../../services/library-api-services";
+import LibraryApiService from "../../services/library-api-services";
 import EditCollaboration from "./EditCollaboration";
 
 import moment from "moment";
@@ -46,23 +46,17 @@ class CollaborationList extends Component {
 
   handlePublish = (title, author, lines, collaborationId) => {
     // console.log("faved");
-    // let collaboration = {
-    //   title: title,
-    //   author: author,
-    //   lines: lines,
-    //   date_created: moment().format("LLL"),
-    // };
-    // console.log(collaboration);
-    console.log("here");
-    // <LibraryContext.Consumer>
-    //   {(libraryContext) => {
-    //     LibraryApiService.postLibrary(collaboration).then((collaboration) =>
-    //       libraryContext.addLibrary(collaboration)
-    //     );
-    //     this.handleDelete(collaborationId);
-    //     window.location = "/library";
-    //   }}
-    // </LibraryContext.Consumer>;
+    let collaboration = {
+      title: title,
+      author: author,
+      lines: lines,
+      date_created: moment().format("LLL"),
+    };
+    LibraryApiService.postLibrary(collaboration).then((collaboration) =>
+      this.context.addLibrary(collaboration)
+    );
+    this.handleDelete(collaborationId);
+    this.props.history.push("/library");
   };
   handleFilter = (e) => {
     e.preventDefault();
@@ -72,7 +66,11 @@ class CollaborationList extends Component {
   };
   componentDidMount = () => {
     CollaborationApiService.getCollaboration().then((collaboration) => {
-      this.context.getCollaborations(collaboration);
+      let newCollaboration = collaboration.map((collab) => ({
+        ...collab,
+        lines: collab.lines.split(","),
+      }));
+      this.context.getCollaborations(newCollaboration);
     });
   };
   render() {

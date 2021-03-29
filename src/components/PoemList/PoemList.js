@@ -88,8 +88,6 @@ class PoemList extends Component {
         lines: poem.lines.split(","),
       }));
       this.context.getPoems(newPoems);
-      console.log(this.context.poems);
-      //   console.log(this.context.poems);
     });
   };
   render() {
@@ -128,7 +126,7 @@ class PoemList extends Component {
                       <i className="fa fa-edit edit" aria-hidden="true"></i>
                     </button>
 
-                    {/* <button
+                    <button
                       onClick={() =>
                         this.handleCollab(
                           poem.title,
@@ -139,7 +137,7 @@ class PoemList extends Component {
                       }
                     >
                       <i className="fas fa-users edit"></i>
-                    </button> */}
+                    </button>
 
                     <button
                       onClick={() =>

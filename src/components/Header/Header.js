@@ -52,9 +52,9 @@ class Header extends Component {
             </li>
             {/* <li>Favorites</li> */}
 
-            {/* <li>
+            <li>
               <Link to="/collaboration">Collaboration Space</Link>
-            </li> */}
+            </li>
             <li>
               <Link to="/library">Library</Link>
             </li>
