@@ -45,7 +45,6 @@ class PoemList extends Component {
   };
 
   handleFave = (title, author, lines, poemId) => {
-    // console.log("faved");
     let library = {
       title: title,
       author: author,

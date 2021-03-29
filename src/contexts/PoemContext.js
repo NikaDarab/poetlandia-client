@@ -4,12 +4,16 @@ import React, { Component } from "react";
 export const PoemContext = React.createContext({
   poems: [],
   libraries: [],
+  collaborations: [],
+  filteredByPoem: null,
 });
 
 export class ContextsProvider extends Component {
   state = {
     poems: [],
     libraries: [],
+    collaborations: [],
+    filteredByPoem: null,
     error: null,
   };
 
@@ -65,11 +69,43 @@ export class ContextsProvider extends Component {
     libraries[foundIndex] = newLibrary;
     this.setState({ libraries });
   };
+  getCollaborations = (collaborations) => {
+    this.setState({
+      collaborations,
+    });
+  };
 
+  addCollaboration = (collaboration) => {
+    this.setState({
+      collaborations: [...this.state.collaborations, collaboration],
+    });
+  };
+  deleteCollaboration = (collaborationId) => {
+    this.setState({
+      collaborations: this.state.collaborations.filter(
+        (collaboration) => collaboration.id !== collaborationId
+      ),
+    });
+  };
+  editCollaboration = (collaborationId, newCollaboration) => {
+    let collaborations = [...this.state.collaborations];
+    let foundIndex = collaborations.findIndex(
+      (collaboration) => collaboration.id === collaborationId
+    );
+    collaborations[foundIndex] = newCollaboration;
+    this.setState({ collaborations });
+  };
+  handleFilterPoem = (poem) => {
+    this.setState({
+      filteredByPoem: poem,
+    });
+    console.log(this.state.filteredByPoem);
+  };
   render() {
     let value = {
       poems: this.state.poems,
       libraries: this.state.libraries,
+      collaborations: this.state.collaborations,
       getPoems: this.getPoems,
       addPoems: this.addPoems,
       deletePoem: this.deletePoem,
@@ -78,6 +114,10 @@ export class ContextsProvider extends Component {
       addLibrary: this.addLibrary,
       deleteLibrary: this.deleteLibrary,
       editLibrary: this.editLibrary,
+      getCollaborations: this.getCollaborations,
+      addCollaboration: this.addCollaboration,
+      deleteCollaboration: this.deleteCollaboration,
+      editCollaboration: this.editCollaboration,
     };
     return (
       <PoemContext.Provider value={value}>

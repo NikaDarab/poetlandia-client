@@ -5,8 +5,6 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import RegistrationRoute from "../../routes/RegistrationRoute/RegistrationRoute";
 import LoginRoute from "../../routes/LoginRoute/LoginRoute";
-import DashboardRoute from "../../routes/DashboardRoute/DashboardRoute";
-// import LearningRoute from "../../routes/LearningRoute/LearningRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
 import Search from "../Search/Search";
 import { ContextsProvider } from "../../contexts/PoemContext";
@@ -17,9 +15,8 @@ import Draft from "../Draft/Draft";
 import EditPoem from "../PoemList/EditPoem";
 import PoemList from "../PoemList/PoemList";
 import PoemForm from "../PoemForm/PoemForm";
-// import poetlandia from "../../assets/poetlandia.png";
-
-// import "./App.css";
+import LandingPage from "../LandingPage/LandingPage";
+import CollaborationList from "../../components/Collaboration/CollaborationList";
 
 export default class App extends Component {
   state = { hasError: false };
@@ -44,9 +41,14 @@ export default class App extends Component {
                   {hasError && <p>There was an error! Oh no!</p>}
 
                   <Switch>
-                    <PrivateRoute exact path={"/"} component={DashboardRoute} />
+                    {/* <PrivateRoute exact path={"/"} component={DashboardRoute} /> */}
+                    <Route exact path={"/"} component={LandingPage} />
                     <PrivateRoute path={"/drafts"} component={Draft} />
                     <Route path={"/library"} component={LibraryList} />
+                    <PrivateRoute
+                      path={"/collaboration"}
+                      component={CollaborationList}
+                    />
                     <PrivateRoute path={"/edit"} component={EditPoem} />
                     <PrivateRoute path={"/poemlist"} component={PoemList} />
                     <PrivateRoute path={"/poemform"} component={PoemForm} />
@@ -60,11 +62,6 @@ export default class App extends Component {
                     <Route component={NotFoundRoute} />
                   </Switch>
                 </main>
-                <footer>
-                  {/* <div className="background-img">
-                  <img src={poetlandia} alt="" />
-                </div> */}
-                </footer>
               </div>
             </LibraryProvider>
           </ContextsProvider>

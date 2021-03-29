@@ -74,7 +74,7 @@ class LibraryList extends Component {
     return (
       <>
         <div className="search-bar">
-          <form id="demo-2" onSubmit={this.handleFilter}>
+          <form onSubmit={this.handleFilter} id="demo-2">
             <label htmlFor="poem">
               <input type="search" placeholder="Search" name="poem" />
             </label>

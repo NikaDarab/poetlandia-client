@@ -47,20 +47,6 @@ class Header extends Component {
               <Link to="/">POETLANDIA</Link>
             </li>
 
-            {/* <li>
-              <Link to="/poemform" handleClick={this.context.handleClick}>
-                {" "}
-                <div className="feather">
-                  <button type="submit">
-                    <i className="fa fa-feather add"></i>
-                  </button>
-                </div>
-              </Link>
-            </li> */}
-            {/* 
-            <li>
-              <Link to="/search">Search</Link>
-            </li> */}
             <li>
               <Link to="/drafts">Drafts</Link>
             </li>
@@ -68,7 +54,9 @@ class Header extends Component {
             <li>
               <Link to="/library">Library</Link>
             </li>
-
+            <li>
+              <Link to="/collaboration">Collaboration Space</Link>
+            </li>
             {TokenService.hasAuthToken()
               ? this.renderLogoutLink()
               : this.renderLoginLink()}

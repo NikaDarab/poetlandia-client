@@ -1,7 +1,7 @@
 let DashboardRoute = () => {
   return (
-    <div className="background-img">
-      <img src={""} alt="" />
+    <div className="landing-page">
+      <h1>landing page</h1>
     </div>
   );
 };
