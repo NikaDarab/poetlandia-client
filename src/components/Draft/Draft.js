@@ -5,22 +5,7 @@ import UserContext from "../../contexts/UserContext";
 
 class Draft extends Component {
   static contextType = UserContext;
-  // state = {
-  //   toggleForm: false,
-  //   buttonToggle: false,
-  // };
-  // handleClick = () => {
-  //   this.setState({
-  //     toggleForm: !this.state.toggleForm,
-  //     buttonToggle: !this.state.buttonToggle,
-  //   });
-  // };
-  // handleCancel = () => {
-  //   this.setState({
-  //     buttonToggle: !this.state.buttonToggle,
-  //   });
-  //   window.location = "/poemlist";
-  // };
+
   render() {
     return (
       <>

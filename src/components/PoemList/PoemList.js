@@ -3,18 +3,24 @@ import { PoemContext } from "../../contexts/PoemContext";
 import UserContext from "../../contexts/UserContext";
 // import { LibraryContext } from "../../contexts/LibraryContext";
 import PoemApiService from "../../services/poem-api-service";
+import CollaborationApiService from "../../services/collaboration-api-service";
 import LibraryApiService from "../../services/library-api-services";
 import EditPoem from "./EditPoem";
-
 import moment from "moment";
 
 class PoemList extends Component {
   state = {
     editToggle: null,
     showPoem: null,
+    hover: false,
   };
   static contextType = PoemContext;
 
+  onHover = () => {
+    this.setState({
+      hover: !this.state.hover,
+    });
+  };
   handleDelete = (poemId) => {
     this.context.deletePoem(poemId);
     PoemApiService.deletePoem(poemId);
@@ -51,12 +57,26 @@ class PoemList extends Component {
       lines: lines,
       date_created: moment().format("LLL"),
     };
-    console.log(library);
+    // console.log(library);
     LibraryApiService.postLibrary(library).then((library) =>
       this.context.addLibrary(library)
     );
     this.handleDelete(poemId);
     window.location = "/library";
+  };
+  handleCollab = (title, author, lines, poemId) => {
+    let collaboration = {
+      title: title,
+      author: author,
+      lines: lines,
+      poemId: poemId,
+      date_created: moment().format("LLL"),
+    };
+    CollaborationApiService.postCollaboration(
+      collaboration
+    ).then((collaboration) => this.context.addCollaboration(collaboration));
+    this.handleDelete(poemId);
+    window.location = "/collaboration";
   };
   componentDidMount = () => {
     PoemApiService.getPoem().then((poem) => {
@@ -97,6 +117,20 @@ class PoemList extends Component {
                     <button onClick={() => this.handleEdit(poem.id)}>
                       <i className="fa fa-edit edit" aria-hidden="true"></i>
                     </button>
+
+                    <button
+                      onClick={() =>
+                        this.handleCollab(
+                          poem.title,
+                          poem.author,
+                          poem.lines,
+                          poem.id
+                        )
+                      }
+                    >
+                      <i className="fas fa-users edit"></i>
+                    </button>
+
                     <button
                       onClick={() =>
                         this.handleFave(
@@ -107,7 +141,9 @@ class PoemList extends Component {
                         )
                       }
                     >
-                      publish
+                      <div style={{ fontSize: "100%" }} className="edit">
+                        publish
+                      </div>
                     </button>
                   </div>
                   {this.state.editToggle === poem.id ? (

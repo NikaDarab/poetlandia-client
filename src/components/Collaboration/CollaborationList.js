@@ -99,7 +99,7 @@ class CollaborationList extends Component {
         </div>
         <div className="poem-item-wrapper">
           <ul>
-            {this.context.collaborations.map((collaboration) => (
+            {collaborations.map((collaboration) => (
               <div key={parseInt(Date.now() * Math.random())}>
                 <div>
                   <div className="edit-delete">
@@ -126,18 +126,6 @@ class CollaborationList extends Component {
 
                     <button onClick={() => this.handleEdit(collaboration.id)}>
                       <i className="fa fa-edit edit" aria-hidden="true"></i>
-                    </button>
-                    <button
-                      onClick={() =>
-                        this.handleFave(
-                          collaboration.title,
-                          collaboration.author,
-                          collaboration.lines,
-                          collaboration.id
-                        )
-                      }
-                    >
-                      publish
                     </button>
                   </div>
                   {this.state.editToggle === collaboration.id ? (
