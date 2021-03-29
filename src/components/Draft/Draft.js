@@ -7,6 +7,7 @@ class Draft extends Component {
   static contextType = UserContext;
 
   render() {
+    console.log(this.props);
     return (
       <>
         {this.context.toggleForm ? (
@@ -18,6 +19,7 @@ class Draft extends Component {
         ) : null}
         <PoemList
           handleClick={this.context.handleClick}
+          history={this.props.history}
           // buttonToggle={this.state.buttonToggle}
         />
       </>

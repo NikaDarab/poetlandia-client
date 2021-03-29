@@ -18,14 +18,15 @@ export class ContextsProvider extends Component {
   };
 
   getPoems = (poems) => {
+    console.log(poems);
     this.setState({
       poems,
     });
   };
 
-  addPoems = (poems) => {
+  addPoems = (poem) => {
     this.setState({
-      poems: [...this.state.poems, poems],
+      poems: [...this.state.poems, poem],
     });
   };
 
@@ -106,6 +107,7 @@ export class ContextsProvider extends Component {
       poems: this.state.poems,
       libraries: this.state.libraries,
       collaborations: this.state.collaborations,
+      filteredByPoem: this.state.filteredByPoem,
       getPoems: this.getPoems,
       addPoems: this.addPoems,
       deletePoem: this.deletePoem,
@@ -118,6 +120,7 @@ export class ContextsProvider extends Component {
       addCollaboration: this.addCollaboration,
       deleteCollaboration: this.deleteCollaboration,
       editCollaboration: this.editCollaboration,
+      handleFilterPoem: this.handleFilterPoem,
     };
     return (
       <PoemContext.Provider value={value}>

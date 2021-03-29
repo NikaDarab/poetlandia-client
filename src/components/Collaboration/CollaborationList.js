@@ -3,7 +3,7 @@ import { PoemContext } from "../../contexts/PoemContext";
 import UserContext from "../../contexts/UserContext";
 // import { LibraryContext } from "../../contexts/LibraryContext";
 import CollaborationApiService from "../../services/collaboration-api-service";
-import LibraryApiService from "../../services/library-api-services";
+// import LibraryApiService from "../../services/library-api-services";
 import EditCollaboration from "./EditCollaboration";
 
 import moment from "moment";
@@ -44,26 +44,31 @@ class CollaborationList extends Component {
     }
   };
 
-  handleFave = (title, author, lines, collaborationId) => {
+  handlePublish = (title, author, lines, collaborationId) => {
     // console.log("faved");
-    let library = {
-      title: title,
-      author: author,
-      lines: lines,
-      date_created: moment().format("LLL"),
-    };
-    console.log(library);
-    LibraryApiService.postLibrary(library).then((library) =>
-      this.context.addLibrary(library)
-    );
-    this.handleDelete(collaborationId);
-    window.location = "/library";
+    // let collaboration = {
+    //   title: title,
+    //   author: author,
+    //   lines: lines,
+    //   date_created: moment().format("LLL"),
+    // };
+    // console.log(collaboration);
+    console.log("here");
+    // <LibraryContext.Consumer>
+    //   {(libraryContext) => {
+    //     LibraryApiService.postLibrary(collaboration).then((collaboration) =>
+    //       libraryContext.addLibrary(collaboration)
+    //     );
+    //     this.handleDelete(collaborationId);
+    //     window.location = "/library";
+    //   }}
+    // </LibraryContext.Consumer>;
   };
   handleFilter = (e) => {
     e.preventDefault();
     let poem = e.target.poem.value;
     this.context.handleFilterPoem(poem);
-    console.log(this.context.filteredByPoem);
+    // console.log(this.context.filteredByPoem);
   };
   componentDidMount = () => {
     CollaborationApiService.getCollaboration().then((collaboration) => {
@@ -103,9 +108,12 @@ class CollaborationList extends Component {
               <div key={parseInt(Date.now() * Math.random())}>
                 <div>
                   <div className="edit-delete">
+                    <button onClick={() => this.handleEdit(collaboration.id)}>
+                      <i className="fa fa-edit edit" aria-hidden="true"></i>
+                    </button>
                     <UserContext.Consumer>
                       {(userContext) => (
-                        <div id="left">
+                        <>
                           <button
                             onClick={() => this.handleDelete(collaboration.id)}
                             style={{
@@ -120,13 +128,27 @@ class CollaborationList extends Component {
                               aria-hidden="true"
                             ></i>
                           </button>
-                        </div>
+                          <button
+                            onClick={() =>
+                              this.handlePublish(
+                                collaboration.title,
+                                collaboration.author,
+                                collaboration.lines,
+                                collaboration.id
+                              )
+                            }
+                            style={{
+                              display:
+                                collaboration.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            publish
+                          </button>
+                        </>
                       )}
                     </UserContext.Consumer>
-
-                    <button onClick={() => this.handleEdit(collaboration.id)}>
-                      <i className="fa fa-edit edit" aria-hidden="true"></i>
-                    </button>
                   </div>
                   {this.state.editToggle === collaboration.id ? (
                     <EditCollaboration

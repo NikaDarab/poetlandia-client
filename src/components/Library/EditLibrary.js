@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { LibraryContext } from "../../contexts/LibraryContext";
+import { PoemContext } from "../../contexts/PoemContext";
 
 import LibraryApiService from "../../services/library-api-services";
 import moment from "moment";
 
 class EditPoem extends Component {
-  static contextType = LibraryContext;
+  static contextType = PoemContext;
 
   handleEdit = (e) => {
     e.preventDefault();

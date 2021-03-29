@@ -14,6 +14,7 @@ class PoemForm extends Component {
       lines: e.target.lines.value.split(","),
       date_created: moment().format("LLL"),
     };
+    console.log(poem.lines);
     PoemApiService.postPoem(poem).then((poem) => this.context.addPoems(poem));
     console.log(this.context.poems);
 

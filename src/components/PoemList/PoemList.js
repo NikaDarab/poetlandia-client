@@ -50,19 +50,21 @@ class PoemList extends Component {
     }
   };
 
-  handleFave = (title, author, lines, poemId) => {
+  handlePublish = (title, author, lines, poemId) => {
+    console.log("handlepublish");
     let library = {
       title: title,
       author: author,
       lines: lines,
       date_created: moment().format("LLL"),
     };
-    // console.log(library);
+    console.log(library);
     LibraryApiService.postLibrary(library).then((library) =>
       this.context.addLibrary(library)
     );
     this.handleDelete(poemId);
-    window.location = "/library";
+    // window.location = "/library";
+    this.props.history.push("/library");
   };
   handleCollab = (title, author, lines, poemId) => {
     let collaboration = {
@@ -79,12 +81,20 @@ class PoemList extends Component {
     window.location = "/collaboration";
   };
   componentDidMount = () => {
-    PoemApiService.getPoem().then((poem) => {
-      this.context.getPoems(poem);
+    PoemApiService.getPoem().then((poems) => {
+      console.log(poems);
+      let newPoems = poems.map((poem) => ({
+        ...poem,
+        lines: poem.lines.split(","),
+      }));
+      this.context.getPoems(newPoems);
+      console.log(this.context.poems);
       //   console.log(this.context.poems);
     });
   };
   render() {
+    // console.log(this.context.poems);
+    console.log(this.props);
     return (
       <>
         <div className="poem-item">
@@ -118,7 +128,7 @@ class PoemList extends Component {
                       <i className="fa fa-edit edit" aria-hidden="true"></i>
                     </button>
 
-                    <button
+                    {/* <button
                       onClick={() =>
                         this.handleCollab(
                           poem.title,
@@ -129,11 +139,11 @@ class PoemList extends Component {
                       }
                     >
                       <i className="fas fa-users edit"></i>
-                    </button>
+                    </button> */}
 
                     <button
                       onClick={() =>
-                        this.handleFave(
+                        this.handlePublish(
                           poem.title,
                           poem.author,
                           poem.lines,

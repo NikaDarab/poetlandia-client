@@ -51,11 +51,12 @@ class Header extends Component {
               <Link to="/drafts">Drafts</Link>
             </li>
             {/* <li>Favorites</li> */}
+
+            {/* <li>
+              <Link to="/collaboration">Collaboration Space</Link>
+            </li> */}
             <li>
               <Link to="/library">Library</Link>
-            </li>
-            <li>
-              <Link to="/collaboration">Collaboration Space</Link>
             </li>
             {TokenService.hasAuthToken()
               ? this.renderLogoutLink()

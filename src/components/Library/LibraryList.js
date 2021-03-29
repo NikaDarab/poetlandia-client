@@ -1,12 +1,12 @@
 import { Component } from "react";
-import { LibraryContext } from "../../contexts/LibraryContext";
+import { PoemContext } from "../../contexts/PoemContext";
 import LibraryApiService from "../../services/library-api-services";
 import UserContext from "../../contexts/UserContext";
 import EditLibrary from "./EditLibrary";
 
 import moment from "moment";
 class LibraryList extends Component {
-  static contextType = LibraryContext;
+  static contextType = PoemContext;
   state = {
     editToggle: null,
     showLibrary: null,
