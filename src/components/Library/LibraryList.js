@@ -84,99 +84,78 @@ class LibraryList extends Component {
         <div className="poem-item-wrapper" style={{ margin: "20px 0" }}>
           <ul>
             {libraries.map((library) => (
-              <div key={parseInt(Date.now() * Math.random())}>
-                <div>
-                  <div id="wrap" style={{ position: "relative" }}>
-                    <UserContext.Consumer>
-                      {(userContext) => (
-                        <div id="left">
-                          <button
-                            onClick={() => this.handleDelete(library.id)}
-                            style={{
-                              display:
-                                library.author === userContext.user.name
-                                  ? "block"
-                                  : "none",
-                            }}
-                          >
-                            <i
-                              className="fa fa-trash delete"
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                          <button
-                            onClick={() => this.handleEdit(library.id)}
-                            style={{
-                              display:
-                                library.author === userContext.user.name
-                                  ? "block"
-                                  : "none",
-                            }}
-                          >
-                            <i
-                              className="fa fa-edit edit"
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                        </div>
-                      )}
-                    </UserContext.Consumer>
-                    <UserContext.Consumer>
-                      {(userContext) => (
-                        <div id="right">
-                          {/* <button
-                            onClick={() => this.handleEdit(library.id)}
-                            style={{
-                              display:
-                                library.author === userContext.user.name
-                                  ? "block"
-                                  : "none",
-                            }}
-                          >
-                            <i
-                              className="fa fa-edit edit"
-                              aria-hidden="true"
-                            ></i>
-                          </button> */}
-                        </div>
-                      )}
-                    </UserContext.Consumer>
-                  </div>
-                  {this.state.editToggle === library.id ? (
-                    <EditLibrary
-                      title={library.title}
-                      author={library.author}
-                      lines={library.lines}
-                      libraryId={library.id}
-                      handleEdit={this.handleEdit}
-                    />
-                  ) : null}
-                  <button onClick={() => this.handleShow(library.id)}>
-                    <h2 className="title">{library.title}</h2>
-                  </button>
-                  <h3 className="author">By {library.author}</h3>
-                  <br />
-                  <h4 className="publish">
-                    Published on {moment(library.date_created).format("LLL")}
-                  </h4>
-                  <br />
-                  {this.state.showLibrary === library.id ? (
-                    !library.lines.includes(",") ? (
-                      <p className="lines">{library.lines}</p>
-                    ) : (
-                      library.lines.split(",").map((p) => (
-                        <p
-                          className="lines"
-                          key={parseInt(Date.now() * Math.random())}
+              <div
+                key={parseInt(Date.now() * Math.random())}
+                // style={{ float: "right" }}
+              >
+                <UserContext.Consumer>
+                  {(userContext) => (
+                    <div>
+                      <div style={{ float: "left" }}>
+                        <button
+                          onClick={() => this.handleDelete(library.id)}
+                          style={{
+                            display:
+                              library.author === userContext.user.name
+                                ? "block"
+                                : "none",
+                          }}
                         >
-                          {p}
-                        </p>
-                      ))
-                    )
-                  ) : null}
-                  <hr />
-                  <br />
-                </div>
+                          <i
+                            className="fa fa-trash delete"
+                            aria-hidden="true"
+                          ></i>
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => this.handleEdit(library.id)}
+                        style={{
+                          display:
+                            library.author === userContext.user.name
+                              ? "block"
+                              : "none",
+                        }}
+                      >
+                        <i className="fa fa-edit edit" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  )}
+                </UserContext.Consumer>
+
+                {this.state.editToggle === library.id ? (
+                  <EditLibrary
+                    title={library.title}
+                    author={library.author}
+                    lines={library.lines}
+                    libraryId={library.id}
+                    handleEdit={this.handleEdit}
+                  />
+                ) : null}
+                <button onClick={() => this.handleShow(library.id)}>
+                  <h2 className="title">{library.title}</h2>
+                </button>
+                <h3 className="author">By {library.author}</h3>
+                <br />
+                <h4 className="publish">
+                  Published on {moment(library.date_created).format("LLL")}
+                </h4>
+                <br />
+                {this.state.showLibrary === library.id ? (
+                  !library.lines.includes(",") ? (
+                    <p className="lines">{library.lines}</p>
+                  ) : (
+                    library.lines.split(",").map((p) => (
+                      <p
+                        className="lines"
+                        key={parseInt(Date.now() * Math.random())}
+                      >
+                        {p}
+                      </p>
+                    ))
+                  )
+                ) : null}
+                <hr />
+                <br />
               </div>
             ))}
           </ul>
