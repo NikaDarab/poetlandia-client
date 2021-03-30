@@ -75,22 +75,20 @@ class CollaborationList extends Component {
   };
   render() {
     let collaborations = this.context.collaborations;
+    console.log(collaborations);
     if (this.context.filteredByPoem) {
       collaborations = this.context.collaborations.filter(
-        (library) =>
-          library.title
+        (collaboration) =>
+          collaboration.title
             .toLowerCase()
             .includes(this.context.filteredByPoem.toLowerCase()) ||
-          library.author
+          collaboration.author
             .toLowerCase()
             .includes(this.context.filteredByPoem.toLowerCase()) ||
-          library.lines
-            .toLowerCase()
-            .includes(this.context.filteredByPoem.toLowerCase())
+          collaboration.lines.includes(this.context.filteredByPoem)
       );
-    } else {
-      collaborations = this.context.collaborations;
     }
+
     return (
       <>
         <div className="search-bar">
@@ -106,45 +104,68 @@ class CollaborationList extends Component {
               <div key={parseInt(Date.now() * Math.random())}>
                 <div>
                   <div className="edit-delete">
-                    <button onClick={() => this.handleEdit(collaboration.id)}>
-                      <i className="fa fa-edit edit" aria-hidden="true"></i>
-                    </button>
+                    {/* <div style={{ float: "left" }}>
+                      <button onClick={() => this.handleEdit(collaboration.id)}>
+                        <i className="fa fa-edit edit" aria-hidden="true"></i>
+                      </button>
+                    </div> */}
                     <UserContext.Consumer>
                       {(userContext) => (
-                        <>
-                          <button
-                            onClick={() => this.handleDelete(collaboration.id)}
-                            style={{
-                              display:
-                                collaboration.author === userContext.user.name
-                                  ? "block"
-                                  : "none",
-                            }}
-                          >
-                            <i
-                              className="fa fa-trash delete"
-                              aria-hidden="true"
-                            ></i>
-                          </button>
-                          <button
-                            onClick={() =>
-                              this.handlePublish(
-                                collaboration.title,
-                                collaboration.author,
-                                collaboration.lines,
-                                collaboration.id
-                              )
-                            }
-                            style={{
-                              display:
-                                collaboration.author === userContext.user.name
-                                  ? "block"
-                                  : "none",
-                            }}
-                          >
-                            publish
-                          </button>
-                        </>
+                        <div>
+                          <div style={{ float: "left" }}>
+                            <button
+                              onClick={() =>
+                                this.handleDelete(collaboration.id)
+                              }
+                              style={{
+                                display:
+                                  collaboration.author === userContext.user.name
+                                    ? "block"
+                                    : "none",
+                              }}
+                            >
+                              <i
+                                className="fa fa-trash delete"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+                          </div>
+                          <div style={{ float: "left" }}>
+                            <button
+                              onClick={() => this.handleEdit(collaboration.id)}
+                            >
+                              <i
+                                className="fa fa-edit edit"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+                          </div>
+                          <div>
+                            <button
+                              onClick={() =>
+                                this.handlePublish(
+                                  collaboration.title,
+                                  collaboration.author,
+                                  collaboration.lines,
+                                  collaboration.id
+                                )
+                              }
+                              style={{
+                                display:
+                                  collaboration.author === userContext.user.name
+                                    ? "block"
+                                    : "none",
+                              }}
+                            >
+                              <div
+                                style={{ fontSize: "100%" }}
+                                className="edit"
+                              >
+                                publish
+                              </div>
+                            </button>
+                          </div>
+                        </div>
                       )}
                     </UserContext.Consumer>
                   </div>
@@ -159,14 +180,16 @@ class CollaborationList extends Component {
                   ) : null}
                   <button>
                     <h2
+                      style={{ textAlign: "left" }}
                       onClick={() => this.handleShow(collaboration.id)}
-                      className="title"
                     >
                       {collaboration.title}
                     </h2>
                   </button>
 
-                  <h3>By {collaboration.author}</h3>
+                  <h3 style={{ textAlign: "left" }}>
+                    By {collaboration.author}
+                  </h3>
                   <br />
                   {this.state.showCollaboration === collaboration.id ? (
                     !collaboration.lines.includes(",") ? (

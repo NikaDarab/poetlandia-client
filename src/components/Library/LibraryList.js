@@ -63,9 +63,7 @@ class LibraryList extends Component {
           library.author
             .toLowerCase()
             .includes(this.context.filteredByPoem.toLowerCase()) ||
-          library.lines
-            .toLowerCase()
-            .includes(this.context.filteredByPoem.toLowerCase())
+          library.lines.includes(this.context.filteredByPoem.toLowerCase())
       );
     } else {
       libraries = this.context.libraries;
@@ -131,15 +129,16 @@ class LibraryList extends Component {
                     handleEdit={this.handleEdit}
                   />
                 ) : null}
+                <br />
                 <button onClick={() => this.handleShow(library.id)}>
-                  <h2 className="title">{library.title}</h2>
+                  <h2>{library.title}</h2>
                 </button>
-                <h3 className="author">By {library.author}</h3>
+                <h3>By {library.author}</h3>
                 <br />
                 <h4 className="publish">
                   Published on {moment(library.date_created).format("LLL")}
                 </h4>
-                <br />
+
                 {this.state.showLibrary === library.id ? (
                   !library.lines.includes(",") ? (
                     <p className="lines">{library.lines}</p>

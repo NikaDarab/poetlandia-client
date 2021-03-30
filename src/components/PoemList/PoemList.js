@@ -166,13 +166,13 @@ class PoemList extends Component {
                   <button>
                     <h2
                       onClick={() => this.handleShow(poem.id)}
-                      className="title"
+                      style={{ textAlign: "left" }}
                     >
                       {poem.title}
                     </h2>
                   </button>
 
-                  <h3>By {poem.author}</h3>
+                  <h3 style={{ textAlign: "left" }}>By {poem.author}</h3>
                   <br />
                   {this.state.showPoem === poem.id ? (
                     !poem.lines.includes(",") ? (
