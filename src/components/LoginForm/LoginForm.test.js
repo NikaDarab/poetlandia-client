@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { ContextsProvider } from "../../contexts/PoemContext";
-import App from "./App";
+import { UserProvider } from "../../contexts/UserContext";
+import LoginForm from "./LoginForm";
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
-    <ContextsProvider>
+    <UserProvider>
       <BrowserRouter>
-        <App />
+        <LoginForm />
       </BrowserRouter>
-    </ContextsProvider>,
+    </UserProvider>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);

@@ -104,12 +104,6 @@ class LibraryList extends Component {
                               aria-hidden="true"
                             ></i>
                           </button>
-                        </div>
-                      )}
-                    </UserContext.Consumer>
-                    <UserContext.Consumer>
-                      {(userContext) => (
-                        <div id="right">
                           <button
                             onClick={() => this.handleEdit(library.id)}
                             style={{
@@ -124,6 +118,26 @@ class LibraryList extends Component {
                               aria-hidden="true"
                             ></i>
                           </button>
+                        </div>
+                      )}
+                    </UserContext.Consumer>
+                    <UserContext.Consumer>
+                      {(userContext) => (
+                        <div id="right">
+                          {/* <button
+                            onClick={() => this.handleEdit(library.id)}
+                            style={{
+                              display:
+                                library.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            <i
+                              className="fa fa-edit edit"
+                              aria-hidden="true"
+                            ></i>
+                          </button> */}
                         </div>
                       )}
                     </UserContext.Consumer>

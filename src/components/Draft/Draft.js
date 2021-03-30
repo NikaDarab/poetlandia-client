@@ -7,7 +7,7 @@ class Draft extends Component {
   static contextType = UserContext;
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <>
         {this.context.toggleForm ? (
