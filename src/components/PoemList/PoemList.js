@@ -95,6 +95,12 @@ class PoemList extends Component {
     console.log(this.props);
     return (
       <>
+        <div className="welcome">
+          <p>What are we drafting today?</p>
+        </div>
+        <div className="description">
+          <p>This is your private collection of words! </p>
+        </div>
         <div className="poem-item">
           <UserContext.Consumer>
             {(userContext) =>
@@ -136,7 +142,7 @@ class PoemList extends Component {
                         )
                       }
                     >
-                      <i className="fas fa-users edit"></i>
+                      <i className="fas fa-users collab"></i>
                     </button>
 
                     <button
@@ -149,9 +155,7 @@ class PoemList extends Component {
                         )
                       }
                     >
-                      <div style={{ fontSize: "100%" }} className="edit">
-                        publish
-                      </div>
+                      <div className="publish">publish</div>
                     </button>
                   </div>
                   {this.state.editToggle === poem.id ? (
@@ -165,18 +169,15 @@ class PoemList extends Component {
                   ) : null}
                   <button>
                     <h2
+                      className="title"
                       onClick={() => this.handleShow(poem.id)}
-                      style={{ textAlign: "left" }}
                     >
                       {poem.title}
                     </h2>
                   </button>
-
-                  <h3 style={{ textAlign: "left" }}>By {poem.author}</h3>
-                  <br />
                   {this.state.showPoem === poem.id ? (
                     !poem.lines.includes(",") ? (
-                      <p>{poem.lines}</p>
+                      <p className="lines">{poem.lines}</p>
                     ) : (
                       poem.lines
                         .split(",")
@@ -185,8 +186,11 @@ class PoemList extends Component {
                         ))
                     )
                   ) : null}
+                  <h3 className="author">By {poem.author}</h3>
 
-                  <p>Posted on : {moment(poem.date_created).format("LLL")}</p>
+                  <p style={{ fontSize: "13px" }}>
+                    Posted on : {moment(poem.date_created).format("LLL")}
+                  </p>
                   <hr />
                   <br />
                 </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import UserContext from "../../contexts/UserContext";
-// import Search from "../Search/Search";
+import Feather from "../../assets/blue-feather.png";
 
 class Header extends Component {
   static contextType = UserContext;
@@ -53,7 +53,7 @@ class Header extends Component {
             {/* <li>Favorites</li> */}
 
             <li>
-              <Link to="/collaboration">Collaboration Space</Link>
+              <Link to="/collaboration">Collab</Link>
             </li>
             <li>
               <Link to="/library">Library</Link>

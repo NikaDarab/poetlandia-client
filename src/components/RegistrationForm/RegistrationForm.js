@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Input, Required, Label } from "../Form/Form";
 import AuthApiService from "../../services/auth-api-service";
-import Button from "../Button/Button";
+
 import UserContext from "../../contexts/UserContext";
 // import ladypoet from "../../assets/lady-poet.png";
 // import "./RegistrationForm.css";
@@ -60,9 +60,6 @@ class RegistrationForm extends Component {
         </div>
 
         <div className="login-form register">
-          <div>
-            <h2 style={{ display: "none" }}>Sign up</h2>
-          </div>
           <div className="form-wrapper">
             <form className="registration-form" onSubmit={this.handleSubmit}>
               <div role="alert">{error && <p>{error}</p>}</div>
@@ -102,13 +99,12 @@ class RegistrationForm extends Component {
                 />
               </div>
               <footer>
-                <Button type="submit">Sign up</Button>{" "}
+                <button style={{ padding: "0 20% 0 0" }} type="submit">
+                  <div className="signup">Sign up</div>
+                </button>
                 <Link to="/login">Already have an account?</Link>
               </footer>
             </form>
-            {/* <div className="image-wrapper">
-              <img className="image" src={ladypoet} alt="girl" />
-            </div> */}
           </div>
         </div>
       </div>

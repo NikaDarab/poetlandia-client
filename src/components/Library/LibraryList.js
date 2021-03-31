@@ -49,7 +49,11 @@ class LibraryList extends Component {
 
   componentDidMount = () => {
     LibraryApiService.getLibrary().then((library) => {
-      this.context.getLibraries(library);
+      let newLibrary = library.map((lib) => ({
+        ...lib,
+        lines: lib.lines.split(","),
+      }));
+      this.context.getLibraries(newLibrary);
     });
   };
   render() {
@@ -78,47 +82,62 @@ class LibraryList extends Component {
             </label>
           </form>
         </div>
+        <div className="welcome">
+          <p>Welcome to our global library!</p>
+        </div>
 
-        <div className="poem-item-wrapper" style={{ margin: "20px 0" }}>
+        <div className="poem-item-wrapper ">
           <ul>
             {libraries.map((library) => (
               <div
+                style={{ textAlign: "center" }}
                 key={parseInt(Date.now() * Math.random())}
-                // style={{ float: "right" }}
               >
-                <UserContext.Consumer>
-                  {(userContext) => (
-                    <div>
-                      <div style={{ float: "left" }}>
-                        <button
-                          onClick={() => this.handleDelete(library.id)}
+                <div className="edit-delete">
+                  <UserContext.Consumer>
+                    {(userContext) => (
+                      <div>
+                        <div
                           style={{
-                            display:
-                              library.author === userContext.user.name
-                                ? "block"
-                                : "none",
+                            float: "left",
                           }}
                         >
-                          <i
-                            className="fa fa-trash delete"
-                            aria-hidden="true"
-                          ></i>
-                        </button>
+                          <button
+                            onClick={() => this.handleDelete(library.id)}
+                            style={{
+                              display:
+                                library.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            <i
+                              style={{ textAlign: "center" }}
+                              className="fa fa-trash delete"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                        </div>
+                        <div style={{ float: "left" }}>
+                          <button
+                            onClick={() => this.handleEdit(library.id)}
+                            style={{
+                              display:
+                                library.author === userContext.user.name
+                                  ? "block"
+                                  : "none",
+                            }}
+                          >
+                            <i
+                              className="fa fa-edit edit"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                        </div>
                       </div>
-                      <button
-                        onClick={() => this.handleEdit(library.id)}
-                        style={{
-                          display:
-                            library.author === userContext.user.name
-                              ? "block"
-                              : "none",
-                        }}
-                      >
-                        <i className="fa fa-edit edit" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                  )}
-                </UserContext.Consumer>
+                    )}
+                  </UserContext.Consumer>
+                </div>
 
                 {this.state.editToggle === library.id ? (
                   <EditLibrary
@@ -129,15 +148,17 @@ class LibraryList extends Component {
                     handleEdit={this.handleEdit}
                   />
                 ) : null}
+
+                {/* <button>
+                  <h2
+                    onClick={() => this.handleShow(library.id)}
+                    className="title"
+                  >
+                    {library.title}
+                  </h2>
+                </button> */}
+                <h3 className="author">By {library.author}</h3>
                 <br />
-                <button onClick={() => this.handleShow(library.id)}>
-                  <h2>{library.title}</h2>
-                </button>
-                <h3>By {library.author}</h3>
-                <br />
-                <h4 className="publish">
-                  Published on {moment(library.date_created).format("LLL")}
-                </h4>
 
                 {this.state.showLibrary === library.id ? (
                   !library.lines.includes(",") ? (
@@ -146,6 +167,7 @@ class LibraryList extends Component {
                     library.lines.split(",").map((p) => (
                       <p
                         className="lines"
+                        // className="lines"
                         key={parseInt(Date.now() * Math.random())}
                       >
                         {p}
@@ -153,6 +175,7 @@ class LibraryList extends Component {
                     ))
                   )
                 ) : null}
+                <p>Published on {moment(library.date_created).format("LLL")}</p>
                 <hr />
                 <br />
               </div>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Input, Label } from "../Form/Form";
 import AuthApiService from "../../services/auth-api-service";
 import UserContext from "../../contexts/UserContext";
-import Button from "../Button/Button";
 
 class LoginForm extends Component {
   static defaultProps = {
@@ -65,7 +64,9 @@ class LoginForm extends Component {
               required
             />
           </div>
-          <Button type="submit">Login</Button>
+          <button style={{ padding: "0 20% 0 0" }} type="submit">
+            <div className="signup">Login</div>
+          </button>
         </form>
       </div>
     );

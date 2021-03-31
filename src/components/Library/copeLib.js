@@ -99,7 +99,6 @@ class CollaborationList extends Component {
           </form>
         </div>
         <div className="poem-item-wrapper">
-          <p>Welcome to our collaboration forum!</p>
           <ul>
             {collaborations.map((collaboration) => (
               <div key={parseInt(Date.now() * Math.random())}>
@@ -123,7 +122,6 @@ class CollaborationList extends Component {
                               <i
                                 className="fa fa-trash delete"
                                 aria-hidden="true"
-                                style={{ color: "red" }}
                               ></i>
                             </button>
                           </div>

@@ -14,17 +14,38 @@ export default class LandingPage extends Component {
             {hasError && <p>There was an error! Oh no!</p>}
             <br />
             <div className="inspire">
-              <h1>Inspire and Get Inspired</h1>
-            </div>
-            <div>
-              <p></p>
+              <h1>
+                {" "}
+                <Link to="/drafts"> Write • </Link>
+                <Link to="/collaboration">Collaborate • </Link>
+                <Link to="library ">Share</Link>
+              </h1>
             </div>
             <br />
+            <div className="landing-lines">
+              <p>
+                Poetlandia is a free platform for creating and sharing
+                interesting collection of words.
+              </p>
+            </div>
+            <br />
+            {/* <div>
+              <Link to="/register">Sign up</Link>
+              <Link to="/login">Login</Link>
+            </div> */}
           </main>
-          <div className="landing-links">
-            <Link to="/library">Global Library</Link>
-            <Link to="/poemlist">Drafts</Link>
-          </div>
+          {/* <div style={{ textAlign: "center" }}>
+            <Link className="landing-links" to="/poemlist">
+              Drafts
+            </Link>
+            <Link to="/library" className="landing-links">
+              Library
+            </Link>
+
+            <Link className="landing-links" to="/collaboration">
+              Collaboration Space
+            </Link>
+          </div> */}
           <footer>
             <Footer />
           </footer>
