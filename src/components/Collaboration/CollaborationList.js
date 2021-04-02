@@ -98,8 +98,15 @@ class CollaborationList extends Component {
             </label>
           </form>
         </div>
+
+        <div className="welcome">
+          <p>Team work, makes the dream work!</p>
+        </div>
+        <div className="description">
+          <p>This is a public place to collaborate! </p>
+        </div>
+
         <div className="poem-item-wrapper">
-          <p>Welcome to our collaboration forum!</p>
           <ul>
             {collaborations.map((collaboration) => (
               <div key={parseInt(Date.now() * Math.random())}>
@@ -123,7 +130,6 @@ class CollaborationList extends Component {
                               <i
                                 className="fa fa-trash delete"
                                 aria-hidden="true"
-                                style={{ color: "red" }}
                               ></i>
                             </button>
                           </div>
@@ -156,7 +162,7 @@ class CollaborationList extends Component {
                             >
                               <div
                                 style={{ fontSize: "100%" }}
-                                className="edit"
+                                className="publish"
                               >
                                 publish
                               </div>
@@ -190,7 +196,7 @@ class CollaborationList extends Component {
                   <br />
                   {this.state.showCollaboration === collaboration.id ? (
                     !collaboration.lines.includes(",") ? (
-                      <p>{collaboration.lines}</p>
+                      <p className="lines">{collaboration.lines}</p>
                     ) : (
                       collaboration.lines
                         .split(",")

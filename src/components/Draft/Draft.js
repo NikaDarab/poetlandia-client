@@ -10,6 +10,12 @@ class Draft extends Component {
     // console.log(this.props);
     return (
       <>
+        <div className="welcome">
+          <p>What are we drafting today?</p>
+        </div>
+        <div className="description">
+          <p>This is your private collection of words! </p>
+        </div>
         {this.context.toggleForm ? (
           <PoemForm
             user={this.context.user.name}

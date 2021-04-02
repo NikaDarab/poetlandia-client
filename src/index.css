@@ -59,20 +59,22 @@ h1 {
   padding: 0;
 }
 .title {
-  color: rgb(221, 189, 219);
+  /* color: rgb(221, 189, 219); */
   text-align: left;
   font-size: 30px;
   text-transform: uppercase;
+  margin: 0 30px;
 }
 
 .author {
   text-align: left;
-  color: rgb(195, 195, 231);
+  /* color: rgb(195, 195, 231); */
   margin: 10px 0;
 }
 
 .lines {
   margin: 15px 0;
+  font-size: 40px;
 }
 .publish {
   text-align: left;
@@ -184,7 +186,7 @@ button {
 }
 .edit-delete {
   /* background-color: white; */
-  margin: 30px 0;
+  margin: 30px;
 }
 .delete-button {
   float: right;
@@ -197,19 +199,19 @@ button {
   padding: 5px 0 0 0;
 }
 .delete {
-  color: rgb(248, 179, 179);
+  /* color: rgb(248, 179, 179); */
 }
 .edit {
-  color: rgb(231, 231, 75);
+  /* color: rgb(231, 231, 75); */
 }
 .collab {
-  color: rgb(135, 135, 231);
+  /* color: rgb(135, 135, 231); */
 }
 .publish {
-  color: rgb(80, 121, 19);
+  /* color: rgb(80, 121, 19); */
 }
 .lines {
-  color: rgb(160, 134, 134);
+  /* color: rgb(160, 134, 134); */
 }
 .delete,
 .edit,

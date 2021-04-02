@@ -92,15 +92,9 @@ class PoemList extends Component {
   };
   render() {
     // console.log(this.context.poems);
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <>
-        <div className="welcome">
-          <p>What are we drafting today?</p>
-        </div>
-        <div className="description">
-          <p>This is your private collection of words! </p>
-        </div>
         <div className="poem-item">
           <UserContext.Consumer>
             {(userContext) =>
@@ -186,12 +180,15 @@ class PoemList extends Component {
                         ))
                     )
                   ) : null}
-                  <h3 className="author">By {poem.author}</h3>
+                  {this.state.showPoem === poem.id ? (
+                    <>
+                      <h3 className="author">By {poem.author}</h3>
+                      <p style={{ fontSize: "13px" }}>
+                        Posted on : {moment(poem.date_created).format("LLL")}
+                      </p>
+                    </>
+                  ) : null}
 
-                  <p style={{ fontSize: "13px" }}>
-                    Posted on : {moment(poem.date_created).format("LLL")}
-                  </p>
-                  <hr />
                   <br />
                 </div>
               </div>
