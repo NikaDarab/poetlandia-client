@@ -99,7 +99,7 @@ class RegistrationForm extends Component {
                 />
               </div>
               <footer>
-                <button style={{ padding: "0 20% 0 0" }} type="submit">
+                <button style={{ padding: "0 10% 0 0" }} type="submit">
                   <div className="signup">Sign up</div>
                 </button>
                 <Link to="/login">Already have an account?</Link>
