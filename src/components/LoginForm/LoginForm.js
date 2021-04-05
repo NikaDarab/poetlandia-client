@@ -48,7 +48,7 @@ class LoginForm extends Component {
           <div role="alert">{error && <p>{error}</p>}</div>
           <div style={{ padding: "  10px 0" }}>
             <div>username: admin</div>
-            <div>password: pass</div>
+            <div>password: Password1!</div>
           </div>
 
           <div>
