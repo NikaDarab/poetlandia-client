@@ -17,6 +17,7 @@ import PoemList from "../PoemList/PoemList";
 import PoemForm from "../PoemForm/PoemForm";
 import LandingPage from "../LandingPage/LandingPage";
 import CollaborationList from "../../components/Collaboration/CollaborationList";
+import Footer from "../Footer/Footer";
 
 export default class App extends Component {
   state = { hasError: false };
@@ -62,6 +63,8 @@ export default class App extends Component {
                   <Route component={NotFoundRoute} />
                 </Switch>
               </main>
+
+              <Footer />
             </div>
             {/* </LibraryProvider> */}
           </ContextsProvider>

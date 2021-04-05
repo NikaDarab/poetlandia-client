@@ -16,14 +16,26 @@ export default class LandingPage extends Component {
             <div className="inspire">
               <h1>
                 {" "}
-                <Link to="/drafts"> Write • </Link>
-                <Link to="/collaboration">Collaborate • </Link>
-                <Link to="library ">Share</Link>
+                <Link style={{ color: " rgb(175, 172, 172)" }} to="/drafts">
+                  {" "}
+                  Write{" "}
+                </Link>
+                •{" "}
+                <Link
+                  style={{ color: " rgb(175, 172, 172)" }}
+                  to="/collaboration"
+                >
+                  Collaborate{" "}
+                </Link>
+                •{" "}
+                <Link style={{ color: " rgb(175, 172, 172)" }} to="library ">
+                  Share
+                </Link>
               </h1>
             </div>
 
             <br />
-
+            <hr />
             <div className="rules-wrapper">
               <div className="rules first">
                 <p>
@@ -35,51 +47,40 @@ export default class LandingPage extends Component {
               <hr />
               <div className="rules">
                 <p>
-                  <Link to="/drafts">Drafts</Link> is a private place for you to
-                  create, edit and delete your pieces.
+                  <Link style={{ color: "gray" }} to="/drafts">
+                    Drafts{" "}
+                  </Link>
+                  is a private place for you to create, edit and delete your
+                  pieces.
                 </p>
               </div>
 
               <hr />
               <div className="rules">
                 <p>
-                  <Link to="/collab">Collab</Link> is a public place accesible
-                  to users who are registered. All registered users can edit a
-                  collaboration piece. Only the original author of the piece can
-                  delete or publish it to the library.
+                  <Link style={{ color: "gray" }} to="/collaboration">
+                    Collab{" "}
+                  </Link>
+                  is a public place accesible to users who are registered. All
+                  registered users can edit a collaboration piece. Only the
+                  original author of the piece can delete or publish it to the
+                  library.
                 </p>
               </div>
               <hr />
               <div className="rules">
                 <p>
-                  <Link to="/library">Library</Link> is a public forum of all
-                  pieces that were published by their authors.Accessbile by all
-                  users who visit this app.
+                  <Link style={{ color: "gray" }} to="/library">
+                    Library
+                  </Link>{" "}
+                  is a public forum of all pieces that were published by their
+                  authors.Accessbile by all users who visit this app.
                 </p>
               </div>
             </div>
 
             <br />
-            {/* <div>
-              <Link to="/register">Sign up</Link>
-              <Link to="/login">Login</Link>
-            </div> */}
           </main>
-          {/* <div style={{ textAlign: "center" }}>
-            <Link className="landing-links" to="/poemlist">
-              Drafts
-            </Link>
-            <Link to="/library" className="landing-links">
-              Library
-            </Link>
-
-            <Link className="landing-links" to="/collaboration">
-              Collaboration Space
-            </Link>
-          </div> */}
-          <footer>
-            <Footer />
-          </footer>
         </div>
       </>
     );
