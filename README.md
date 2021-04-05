@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Poetlandia Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live app: https://poetlandia-client.vercel.app/
 
-## Available Scripts
+API repo: https://github.com/NikaDarab/poetlandia-api
 
-In the project directory, you can run:
+Client repo: https://github.com/NikaDarab/poetlandia-client
 
-### `yarn start`
+## Summary
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Poetlandia is an editorial collaborative space for creative writers. Registered Users can have a private collection, a public space fro published pieces and a collaboration space. The public library is open to anyone who uses the app. The collaboration space and the drafts are open to registered users
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies used
 
-### `yarn test`
+React.js, Node.js, Express.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `yarn build`
+![Screen Shot 2021-04-05 at 1 08 39 PM](https://user-images.githubusercontent.com/43226446/113608398-289db780-9610-11eb-8245-c1e622f93d4a.png)
+![Screen Shot 2021-04-05 at 12 37 44 PM](https://user-images.githubusercontent.com/43226446/113608489-41a66880-9610-11eb-8bac-27bf1e61379e.png)
+![Screen Shot 2021-04-05 at 12 38 25 PM](https://user-images.githubusercontent.com/43226446/113608501-4834e000-9610-11eb-98e0-49e6f3691350.png)
+![Screen Shot 2021-04-05 at 12 39 00 PM](https://user-images.githubusercontent.com/43226446/113608409-2c313e80-9610-11eb-8d62-68b88132bcee.png)
+![Screen Shot 2021-04-05 at 12 36 49 PM](https://user-images.githubusercontent.com/43226446/113608426-32271f80-9610-11eb-9807-c1d0fbbc5478.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To setup the application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Fork and clone the project to your machine
+2. `npm install`
 
-### `yarn eject`
+The project expects you have the Poetlandia API project setup and running on http://localhost:8000.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Find instructions to setup the API here https://github.com/NikaDarab/poetlandia-api
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is a `create-react-app` project so `npm start` will start the project in development mode with hot reloading by default.

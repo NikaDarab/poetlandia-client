@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 
 export default class LandingPage extends Component {
