@@ -363,7 +363,21 @@ input::-webkit-input-placeholder {
   margin: 0 100px;
   font-size: 250%;
 }
+.rules-wrapper {
+  display: flex;
+  justify-content: center;
 
+  flex-direction: column;
+  margin: 5% 10%;
+  font-size: 200%;
+}
+.rules {
+  margin: 2% 0;
+}
+.first {
+  font-size: 210%;
+  text-align: center;
+}
 .intro {
   margin: 10% 0 0 0;
   padding: 0 5%;
@@ -403,6 +417,16 @@ input::-webkit-input-placeholder {
     line-height: 50px;
     margin: 0 10px;
     font-size: 150%;
+  }
+  .rules-wrapper {
+    margin: 0 10%;
+  }
+  .first {
+    font-size: 130% !important;
+  }
+  .rules {
+    font-size: 100%;
+    margin: 10px 0;
   }
   .search-bar {
     margin: 3% 8%;
