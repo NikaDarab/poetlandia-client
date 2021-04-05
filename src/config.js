@@ -1,6 +1,6 @@
 const config = {
   // API_ENDPOINT: "http://localhost:8000/api",
-  TOKEN_KEY: "blogful-client-auth-token",
+  TOKEN_KEY: process.env.REACT_APP_API_KEY,
   API_ENDPOINT: " https://stormy-dawn-55910.herokuapp.com/api",
 };
 
