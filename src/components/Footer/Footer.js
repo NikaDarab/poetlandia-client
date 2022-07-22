@@ -3,7 +3,7 @@ let Footer = () => {
     <>
       <footer style={{ display: "flex", justifyContent: "center" }} id="footer">
         <ul className="copyright">
-          <li>&copy; 2021 Poetlandia</li>
+          <li>&copy; 2022 Poetlandia</li>
         </ul>
       </footer>
     </>
