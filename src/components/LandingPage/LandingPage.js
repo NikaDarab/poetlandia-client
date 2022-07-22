@@ -74,7 +74,7 @@ export default class LandingPage extends Component {
                     Library
                   </Link>{" "}
                   is a public forum of all pieces that were published by their
-                  authors.Accessbile by all users who visit this app.
+                  authors.Accessible by all users who visit this app.
                 </p>
               </div>
             </div>
