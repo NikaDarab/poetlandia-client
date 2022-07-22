@@ -61,7 +61,7 @@ export default class LandingPage extends Component {
                   <Link style={{ color: "gray" }} to="/collaboration">
                     Collab{" "}
                   </Link>
-                  is a public place accesible to users who are registered. All
+                  is a public place accessible to users who are registered. All
                   registered users can edit a collaboration piece. Only the
                   original author of the piece can delete or publish it to the
                   library.
